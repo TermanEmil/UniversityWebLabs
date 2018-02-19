@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Html;
+@using lab2.Views.Shared._NavBar;
+
+<head>
+    <style>
+        .navbar-default .navbar-brand {
+            color: purple
+        }
+
+        .navbar-default .navbar-brand:hover {
+            color: #8A2B00
+        }
+
+        .navbar-default .navbar-nav > .active > a {
+            color: purple
+        }
+
+        .navbar-default .navbar-nav > .active > a:hover {
+            color: orange
+        }
+    </style>
+</head>
+<body>
+    <div class="multi-paged-navbar">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Lab2</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    @NavBar.NewHtmlBtn(@ViewData["Title"].ToString(), "Home")
+                    @NavBar.NewHtmlBtn(@ViewData["Title"].ToString(), "About")
+                    @NavBar.NewHtmlBtn(@ViewData["Title"].ToString(), "Contacts")
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
+</body>

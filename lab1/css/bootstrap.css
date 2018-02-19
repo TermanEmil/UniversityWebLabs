@@ -11,18 +11,3 @@
 	padding: 0 15px;
 }
 
-.navbar-default .navbar-brand {
-	color: purple;
-}
-
-.navbar-default .navbar-brand:hover {
-	color: #8A2B00;
-}
-
-.navbar-default .navbar-nav>.active>a {
-	color: purple;
-}
-
-.navbar-default .navbar-nav>.active>a:hover {
-	color: orange;
-}
