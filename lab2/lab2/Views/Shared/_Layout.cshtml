@@ -10,12 +10,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .cell-container {
+            padding: 20px
+        }
+
+        .my-cell {
+            border: 1px solid gray;
+            padding: 15px
+        }
+
+        .wrapper {
+            padding: 0 15px
+        }
+
+        footer {
+            text-align: center;
+            color: grey;
+            font-size: 8pt;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
     @Html.Partial("~/Views/Shared/_NavBar/_NavBar.cshtml")
         
-    <div>
+    <div class="wrapper">
         @RenderBody()
     </div>
+
+    <footer>
+        <hr />
+        Terman Emil FAF-161 terman.emil@gmail.com
+    </footer>
 </body>
 </html>

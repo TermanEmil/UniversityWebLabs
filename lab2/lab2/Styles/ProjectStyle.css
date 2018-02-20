@@ -1,0 +1,19 @@
+﻿.cell-container {
+    padding: 20px
+}
+
+.my-cell {
+    border: 1px solid gray;
+    padding: 15px
+}
+
+.wrapper {
+    padding: 0 15px
+}
+
+footer {
+    text-align: center;
+    color: grey;
+    font-size: 8pt;
+    font-style: italic
+}
