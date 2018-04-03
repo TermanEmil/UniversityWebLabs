@@ -1,0 +1,11 @@
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Cmagru42.Web.deps.json
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Cmagru42.Web.runtimeconfig.json
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Cmagru42.Web.runtimeconfig.dev.json
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Cmagru42.Web.dll
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Cmagru42.Web.pdb
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Cmagru42.Web.csprojResolveAssemblyReference.cache
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Cmagru42.Web.csproj.CoreCompileInputs.cache
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Cmagru42.Web.AssemblyInfoInputs.cache
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Cmagru42.Web.AssemblyInfo.cs
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Cmagru42.Web.dll
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Cmagru42.Web.pdb

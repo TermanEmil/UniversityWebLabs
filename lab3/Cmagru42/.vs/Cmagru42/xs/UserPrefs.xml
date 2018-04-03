@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Account/Register.cshtml">
+    <Files>
+      <File FileName="Cmagru42/Controllers/HomeController.cs" Line="10" Column="20" />
+      <File FileName="Cmagru42/Views/Home/Index.cshtml" Line="5" Column="1" />
+      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="35" Column="16" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="19" Column="21" />
+      <File FileName="Cmagru42/Models/AccountViewModels/RegisterViewModel.cs" Line="28" Column="23" />
+      <File FileName="Cmagru42/Views/_ViewImports.cshtml" Line="4" Column="19" />
+      <File FileName="Cmagru42/Views/Shared/_ValidationScriptsPartial.cshtml" Line="13" Column="1" />
+      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="27" Column="51" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.BuisnessLogic FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Web PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
