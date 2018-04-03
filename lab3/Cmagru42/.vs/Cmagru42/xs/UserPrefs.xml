@@ -1,17 +1,16 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Account/Register.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Startup.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/HomeController.cs" Line="10" Column="20" />
-      <File FileName="Cmagru42/Views/Home/Index.cshtml" Line="5" Column="1" />
-      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="35" Column="16" />
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="19" Column="21" />
-      <File FileName="Cmagru42/Models/AccountViewModels/RegisterViewModel.cs" Line="28" Column="23" />
-      <File FileName="Cmagru42/Views/_ViewImports.cshtml" Line="4" Column="19" />
-      <File FileName="Cmagru42/Views/Shared/_ValidationScriptsPartial.cshtml" Line="13" Column="1" />
-      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="27" Column="51" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="16" Column="29" />
+      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="11" Column="59" />
+      <File FileName="Cmagru42/Models/AccountViewModels/RegisterViewModel.cs" Line="29" Column="9" />
+      <File FileName="Cmagru42/Models/ApplicationUser.cs" Line="4" Column="21" />
+      <File FileName="Cmagru42/Startup.cs" Line="30" Column="10" />
+      <File FileName="Cmagru42/Models/SeedData.cs" Line="29" Column="26" />
+      <File FileName="Cmagru42/Program.cs" Line="32" Column="77" />
+      <File FileName="Cmagru42/Models/CmagruContext.cs" Line="9" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.BuisnessLogic FirstBuild="True" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

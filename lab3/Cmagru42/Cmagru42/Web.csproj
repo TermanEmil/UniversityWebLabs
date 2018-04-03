@@ -28,12 +28,36 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="BundlerMinifier.Core" Version="2.6.362" />
     <PackageReference Include="bootstrap" Version="4.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="App_Start\BundleConfig.cs" />
+    <Compile Remove="Migrations\20180403172415_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403172415_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\CmagruContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20180403173727_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403200030_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403200649_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403201006_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403201114_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403201358_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403201358_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20180403201911_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403201911_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20180403202118_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403202215_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403202344_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180403202618_InitialCreate1.cs" />
+    <Compile Remove="Migrations\20180403202618_InitialCreate1.Designer.cs" />
+    <Compile Remove="Migrations\20180403202851_InitialCreate1.cs" />
+    <Compile Remove="Migrations\20180403203316_InitialCreate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="wwwroot\css\site.min.css" />
+    <None Remove="Views\Movies\Create.cshtml" />
+    <None Remove="Views\Movies\Details.cshtml" />
+    <None Remove="Views\Movies\Delete.cshtml" />
   </ItemGroup>
 </Project>
