@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
-
-namespace Web.Models
+﻿namespace DataLayer.AppUser
 {
     public class ApplicationUser
     {

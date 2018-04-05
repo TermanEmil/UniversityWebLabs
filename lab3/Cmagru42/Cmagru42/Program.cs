@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Web.Models;
+using DataLayer.DB;
 
-namespace Cmagru42
+namespace Presentation
 {
     public class Program
     {
@@ -24,7 +19,7 @@ namespace Cmagru42
 
                 try
                 {
-                    SeedData.Initialize(services);
+                    SeedDB.Init(services);
                 }
                 catch (Exception ex)
                 {

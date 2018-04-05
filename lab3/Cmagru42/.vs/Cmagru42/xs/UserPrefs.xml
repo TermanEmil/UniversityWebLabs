@@ -1,21 +1,10 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Startup.cs">
-    <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="16" Column="29" />
-      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="11" Column="59" />
-      <File FileName="Cmagru42/Models/AccountViewModels/RegisterViewModel.cs" Line="29" Column="9" />
-      <File FileName="Cmagru42/Models/ApplicationUser.cs" Line="4" Column="21" />
-      <File FileName="Cmagru42/Startup.cs" Line="30" Column="10" />
-      <File FileName="Cmagru42/Models/SeedData.cs" Line="29" Column="26" />
-      <File FileName="Cmagru42/Program.cs" Line="32" Column="77" />
-      <File FileName="Cmagru42/Models/CmagruContext.cs" Line="9" Column="28" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.Web PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Presentation PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

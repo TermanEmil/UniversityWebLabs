@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Web.Migrations
+namespace Presentation.Migrations
 {
     public partial class InitialCreate : Migration
     {

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DataLayer.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Web.Models;
 
-namespace Cmagru42
+namespace Presentation
 {
     public class Startup
     {
@@ -21,8 +17,9 @@ namespace Cmagru42
                 pipeline.MinifyCssFiles("~/css/site.css");
             });
 
-            services.AddDbContext<CmagruContext>(options =>
-                options.UseSqlite("Data Source=Cmagru.db"));
+            services.AddDbContext<CmagruDBContext>(options =>
+                options.UseSqlite("Data Source=Cmagru.db",
+                                  b => b.MigrationsAssembly("Presentation")));   
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

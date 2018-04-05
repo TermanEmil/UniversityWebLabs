@@ -1,29 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Web.Models;
-using Web.Models.AccountViewModels;
+using Presentation.Models.AccountViewModels;
 
-namespace Web.Controllers
+namespace Presentation.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        //private readonly ILogger _logger;
+        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ILogger _logger;
 
-        //public AccountController(
-        //    UserManager<ApplicationUser> userManager,
-        //    SignInManager<ApplicationUser> signInManager)
-        //{
-        //    _userManager = userManager;
-        //    _signInManager = signInManager;
-        //}
+        public AccountController(
+            ILogger<AccountController> logger)
+        {
+            _logger = logger;
+        }
 
         [Route("Login")]
         public IActionResult Login()
@@ -38,27 +31,36 @@ namespace Web.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
             System.Diagnostics.Debug.WriteLine(ViewData);
+            _logger.LogInformation("Register1");
             return View();
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(
-        //    RegisterViewModel model,
-        //    string returnUrl = null)
-        //{
-        //    ViewData["ReturnUrl"] = returnUrl;
+        [Route("Register")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(
+            RegisterViewModel model,
+            string returnUrl)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        //var user 
-        //    }
-        //    else
-        //    {
-        //        // Go back if something failed.
-        //        return View(model);   
-        //    }
-        //}
+            _logger.LogInformation("Register2");
+            if (ModelState.IsValid)
+            {
+                //var user = new ApplicationUser
+                //{
+                //    UserName = model.UserName,
+                //    Email = model.Email,
+                //    Password = model.Password
+                //};
+
+            }
+            else
+            {
+                // Go back if something failed.
+                return View(model);   
+            }
+            return View(model);
+        }
     }
 }

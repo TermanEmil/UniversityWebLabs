@@ -1,11 +1,12 @@
 ﻿using System;
+using DataLayer.AppUser;
 using Microsoft.EntityFrameworkCore;
 
-namespace Web.Models
+namespace DataLayer.DB
 {
-    public class CmagruContext : DbContext
+    public class CmagruDBContext : DbContext
     {
-        public CmagruContext(DbContextOptions<CmagruContext> options)
+        public CmagruDBContext(DbContextOptions<CmagruDBContext> options)
             : base(options)
         {
         }
