@@ -1,4 +1,5 @@
-﻿using DataLayer.DB;
+﻿using AutoMapper;
+using DataLayer.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,8 @@ namespace Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAutoMapper();
+
             services.AddWebOptimizer(pipeline =>
             {
                 pipeline.MinifyCssFiles("~/css/site.css");
@@ -35,7 +38,7 @@ namespace Presentation
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World2!");
+                await context.Response.WriteAsync("Page not found!");
             });
         }
     }

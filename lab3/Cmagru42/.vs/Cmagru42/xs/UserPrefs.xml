@@ -1,5 +1,17 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Models/MappingProfile.cs">
+    <Files>
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="61" Column="17" />
+      <File FileName="BusinessLayer/Account/AccountManager.cs" Line="38" Column="13" />
+      <File FileName="Cmagru42/Startup.cs" Line="13" Column="31" />
+      <File FileName="Cmagru42/Program.cs" Line="16" Column="58" />
+      <File FileName="DataLayer/AppUser/AppUser.cs" Line="10" Column="53" />
+      <File FileName="DataLayer/DataLayer.csproj" Line="1" Column="1" />
+      <File FileName="Cmagru42/Presentation.csproj" Line="1" Column="1" />
+      <File FileName="BusinessLayer/Account/Models/UserRegisterResponse.cs" Line="22" Column="6" />
+      <File FileName="Cmagru42/Models/MappingProfile.cs" Line="11" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

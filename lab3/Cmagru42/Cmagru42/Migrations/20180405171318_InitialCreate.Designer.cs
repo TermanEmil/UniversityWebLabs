@@ -10,7 +10,7 @@ using System;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(CmagruDBContext))]
-    [Migration("20180405151501_InitialCreate")]
+    [Migration("20180405171318_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

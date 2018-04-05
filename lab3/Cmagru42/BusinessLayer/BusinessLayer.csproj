@@ -6,8 +6,14 @@
 
   <ItemGroup>
     <Folder Include="Tools\" />
+    <Folder Include="Account\" />
+    <Folder Include="Account\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.1" />
   </ItemGroup>
 </Project>

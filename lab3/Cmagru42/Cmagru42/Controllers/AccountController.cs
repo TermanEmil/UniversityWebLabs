@@ -1,4 +1,8 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
+using BusinessLayer.Account;
+using BusinessLayer.Account.Models;
+using DataLayer.DB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,11 +15,17 @@ namespace Presentation.Controllers
         //private readonly UserManager<ApplicationUser> _userManager;
         //private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
+        private readonly AccountManager _accountManager;
+        private readonly IMapper _mapper;
 
         public AccountController(
-            ILogger<AccountController> logger)
+            CmagruDBContext context,
+            ILogger<AccountController> logger,
+            IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
+            _accountManager = new AccountManager(context, mapper);
         }
 
         [Route("Login")]
@@ -47,13 +57,10 @@ namespace Presentation.Controllers
             _logger.LogInformation("Register2");
             if (ModelState.IsValid)
             {
-                //var user = new ApplicationUser
-                //{
-                //    UserName = model.UserName,
-                //    Email = model.Email,
-                //    Password = model.Password
-                //};
+                var regData = _mapper.Map<RegisterViewModel, RegistrationData>(model);
 
+                var userRegistration = await _accountManager.UserRegister(regData);
+                _logger.LogInformation("Registred: " + userRegistration.Status.ToString());
             }
             else
             {
