@@ -38,24 +38,24 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "bootstrap/4.0.0": {
+      "bootstrap/4.1.0": {
         "type": "package",
         "dependencies": {
           "jQuery": "[3.0.0, 4.0.0)",
-          "popper.js": "[1.12.9, 2.0.0)"
+          "popper.js": "[1.14.0, 2.0.0)"
         }
       },
-      "BuildBundlerMinifier/2.6.362": {
+      "BuildBundlerMinifier/2.6.375": {
         "type": "package",
         "build": {
           "build/BuildBundlerMinifier.targets": {}
         }
       },
-      "BundlerMinifier.Core/2.6.362": {
+      "BundlerMinifier.Core/2.6.375": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.App": "2.0.0-preview1-002111-00",
-          "NUglify": "1.5.5",
+          "NUglify": "1.5.10",
           "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
@@ -111,7 +111,7 @@
       "LigerShark.WebOptimizer.Analyzers/1.0.6": {
         "type": "package"
       },
-      "LigerShark.WebOptimizer.Core/1.0.201": {
+      "LigerShark.WebOptimizer.Core/1.0.215": {
         "type": "package",
         "dependencies": {
           "LigerShark.WebOptimizer.Analyzers": "1.0.6",
@@ -120,7 +120,7 @@
           "Microsoft.AspNetCore.Mvc.TagHelpers": "2.0.0",
           "Microsoft.AspNetCore.Razor.Runtime": "2.0.0",
           "Microsoft.Extensions.Configuration.Binder": "2.0.0",
-          "NUglify": "1.5.8"
+          "NUglify": "1.5.10"
         },
         "compile": {
           "lib/netstandard2.0/WebOptimizer.Core.dll": {}
@@ -182,15 +182,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Identity.Core/2.2.1": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.0.2": {
@@ -2982,7 +2973,7 @@
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
         }
       },
-      "NUglify/1.5.8": {
+      "NUglify/1.5.10": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -2995,7 +2986,7 @@
           "lib/netstandard1.3/NUglify.dll": {}
         }
       },
-      "popper.js/1.12.9": {
+      "popper.js/1.14.0": {
         "type": "package"
       },
       "Remotion.Linq/2.1.1": {
@@ -5151,7 +5142,7 @@
         "dependencies": {
           "AutoMapper": "6.2.2",
           "DataLayer": "1.0.0",
-          "Microsoft.AspNet.Identity.Core": "2.2.1"
+          "Microsoft.AspNetCore.Identity": "2.0.2"
         },
         "compile": {
           "bin/placeholder/BusinessLayer.dll": {}
@@ -5164,7 +5155,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
-          "Microsoft.AspNet.Identity.Core": "2.2.1",
+          "Microsoft.AspNetCore.Identity": "2.0.2",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.0.2",
           "Microsoft.EntityFrameworkCore": "2.0.2",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.0.2"
         },
@@ -5205,12 +5197,12 @@
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
       ]
     },
-    "bootstrap/4.0.0": {
-      "sha512": "aW3kJMmptC2GD4+hIa3x3fSrPF4VkrWQ2PRBEJg+o7lMRMi7u4UW9igY/GP02/wrIpH/CusL+mQIM42YhvA3XQ==",
+    "bootstrap/4.1.0": {
+      "sha512": "MpThvC2aO+DVfGP76J4TBIZ23pwyIkcGp2miNvQITqjNoGwLtGfY7pRU1u33Ot/7DU20LY2Ur6ZYlM0KGtCglg==",
       "type": "package",
-      "path": "bootstrap/4.0.0",
+      "path": "bootstrap/4.1.0",
       "files": [
-        "bootstrap.4.0.0.nupkg.sha512",
+        "bootstrap.4.1.0.nupkg.sha512",
         "bootstrap.nuspec",
         "content/Content/bootstrap-grid.css",
         "content/Content/bootstrap-grid.css.map",
@@ -5234,13 +5226,13 @@
         "content/Scripts/bootstrap.min.js.map"
       ]
     },
-    "BuildBundlerMinifier/2.6.362": {
-      "sha512": "J8vHrhvkvBAkzf5eA0zDu9Z4RbVlA8lYWGq0UyvWh98kKpqQZpzUe3yC89Rq9nQyiO0pdULrPPs9sSmx+xq8jA==",
+    "BuildBundlerMinifier/2.6.375": {
+      "sha512": "xUPSZvHfNQZY3/4/mvBFSuEZ2cOdxTBm6aIobQyRzVgxEVpyV+G3gT4mN3gO+/ehPOSWVDgER62G5EK1KhXQ4A==",
       "type": "package",
-      "path": "buildbundlerminifier/2.6.362",
+      "path": "buildbundlerminifier/2.6.375",
       "files": [
         "build/BuildBundlerMinifier.targets",
-        "buildbundlerminifier.2.6.362.nupkg.sha512",
+        "buildbundlerminifier.2.6.375.nupkg.sha512",
         "buildbundlerminifier.nuspec",
         "tools/net46/BundlerMinifier.dll",
         "tools/net46/NUglify.dll",
@@ -5253,12 +5245,12 @@
         "tools/netstandard1.3/Newtonsoft.Json.dll"
       ]
     },
-    "BundlerMinifier.Core/2.6.362": {
-      "sha512": "/g2rB/LFwDO/qPd4+Ld/w9yhzZJ7Q4CTr9p3YHm+k/FR5/eFYdDhjTsiav7avy1f0gR5Beky1ygNKorassdJkw==",
+    "BundlerMinifier.Core/2.6.375": {
+      "sha512": "dGLElri2nWWuUzneWT4ntGd/4tIDQwvoL2HpZt+5IgWQA+bK6nTXWayWXcL7crZjeUpq04Wxy3zbxirYJr3YWw==",
       "type": "package",
-      "path": "bundlerminifier.core/2.6.362",
+      "path": "bundlerminifier.core/2.6.375",
       "files": [
-        "bundlerminifier.core.2.6.362.nupkg.sha512",
+        "bundlerminifier.core.2.6.375.nupkg.sha512",
         "bundlerminifier.core.nuspec",
         "lib/net452/dotnet-bundle.exe",
         "lib/net452/dotnet-bundle.runtimeconfig.json",
@@ -5319,16 +5311,16 @@
         "tools/uninstall.ps1"
       ]
     },
-    "LigerShark.WebOptimizer.Core/1.0.201": {
-      "sha512": "s6YMRnR4HC1TfRACM2OfzlHRsTrsIQrXp8fTp34B7kYsEqwswSPSTkjayiSt/BYn2DrnBTZuY+jLcwH+SwPxsw==",
+    "LigerShark.WebOptimizer.Core/1.0.215": {
+      "sha512": "gPTZBI+XgJwCBOUBiG9RNJ2sp689XLWFop3Xbkb21Ddx3ctp9CwvGd52Tzvaj4klga2dy8AOJc56u9LqLd9AxA==",
       "type": "package",
-      "path": "ligershark.weboptimizer.core/1.0.201",
+      "path": "ligershark.weboptimizer.core/1.0.215",
       "files": [
         "build/LigerShark.WebOptimizer.Core.props",
         "build/LigerShark.WebOptimizer.Core.targets",
         "lib/netstandard2.0/WebOptimizer.Core.dll",
         "lib/netstandard2.0/WebOptimizer.Core.xml",
-        "ligershark.weboptimizer.core.1.0.201.nupkg.sha512",
+        "ligershark.weboptimizer.core.1.0.215.nupkg.sha512",
         "ligershark.weboptimizer.core.nuspec"
       ]
     },
@@ -5381,17 +5373,6 @@
         "lib/netstandard1.6/Microsoft.AI.DependencyCollector.xml",
         "microsoft.applicationinsights.dependencycollector.2.4.1.nupkg.sha512",
         "microsoft.applicationinsights.dependencycollector.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Identity.Core/2.2.1": {
-      "sha512": "jjurNglpmcv0SLBd4Fmar8ZoJ2yqfTf6iuP3p8wVH7Nvanfo8l3qTBzq3qRQz2BQlb6iXJiDWPjcnIImVz512g==",
-      "type": "package",
-      "path": "microsoft.aspnet.identity.core/2.2.1",
-      "files": [
-        "lib/net45/Microsoft.AspNet.Identity.Core.dll",
-        "lib/net45/Microsoft.AspNet.Identity.Core.xml",
-        "microsoft.aspnet.identity.core.2.2.1.nupkg.sha512",
-        "microsoft.aspnet.identity.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore/2.0.2": {
@@ -8309,10 +8290,10 @@
         "nuget.frameworks.nuspec"
       ]
     },
-    "NUglify/1.5.8": {
-      "sha512": "QXYmYpvLKoBA9o+oL6PrfzaEiFHA6MRld2eb3wEed44PSNnrVQwqBNRk6hJWCvyt8QS6XPxS+J0Hcp2aot5S8Q==",
+    "NUglify/1.5.10": {
+      "sha512": "do9KYDUEbCVMkSFF3P3lJtcCuLLpRAxchFaIY7vidfB4hgdik97f8iqj0dVmJK1X3eZO8jTuGD0CUUYbaFTR8Q==",
       "type": "package",
-      "path": "nuglify/1.5.8",
+      "path": "nuglify/1.5.10",
       "files": [
         "lib/net35/NUglify.dll",
         "lib/net35/NUglify.xml",
@@ -8320,14 +8301,14 @@
         "lib/net40/NUglify.xml",
         "lib/netstandard1.3/NUglify.dll",
         "lib/netstandard1.3/NUglify.xml",
-        "nuglify.1.5.8.nupkg.sha512",
+        "nuglify.1.5.10.nupkg.sha512",
         "nuglify.nuspec"
       ]
     },
-    "popper.js/1.12.9": {
-      "sha512": "WfoI8YXFx31zr8w6AvYMmqKihR3a/wLc5wBhu41ApgBukTM8C2UHNSRFrO6485SDQ/HKoSn9yiEMgfBx1LVNNw==",
+    "popper.js/1.14.0": {
+      "sha512": "SPxZdXknelgQ015wey7GMZvsVdt/SyEmHYORhEp5k/uF9MUk9DPtkn+6dR98fud2hVWJjZm9KKr474+r7WQt+A==",
       "type": "package",
-      "path": "popper.js/1.12.9",
+      "path": "popper.js/1.14.0",
       "files": [
         "content/Scripts/README.md",
         "content/Scripts/esm/popper-utils.js",
@@ -8355,7 +8336,7 @@
         "content/Scripts/umd/popper.js.map",
         "content/Scripts/umd/popper.min.js",
         "content/Scripts/umd/popper.min.js.map",
-        "popper.js.1.12.9.nupkg.sha512",
+        "popper.js.1.14.0.nupkg.sha512",
         "popper.js.nuspec"
       ]
     },
@@ -13473,15 +13454,15 @@
     ".NETCoreApp,Version=v2.0": [
       "AutoMapper >= 6.2.2",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 3.2.0",
-      "BuildBundlerMinifier >= 2.6.362",
-      "BundlerMinifier.Core >= 2.6.362",
+      "BuildBundlerMinifier >= 2.6.375",
+      "BundlerMinifier.Core >= 2.6.375",
       "BusinessLayer >= 1.0.0",
       "DataLayer >= 1.0.0",
-      "LigerShark.WebOptimizer.Core >= 1.0.201",
+      "LigerShark.WebOptimizer.Core >= 1.0.215",
       "Microsoft.AspNetCore.All >= 2.0.6",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3",
-      "bootstrap >= 4.0.0"
+      "bootstrap >= 4.1.0"
     ]
   },
   "packageFolders": {
@@ -13536,22 +13517,6 @@
             "version": "2.0",
             "autoReferenced": true
           },
-          "BuildBundlerMinifier": {
-            "target": "Package",
-            "version": "2.6.362"
-          },
-          "LigerShark.WebOptimizer.Core": {
-            "target": "Package",
-            "version": "1.0.201"
-          },
-          "BundlerMinifier.Core": {
-            "target": "Package",
-            "version": "2.6.362"
-          },
-          "bootstrap": {
-            "target": "Package",
-            "version": "4.0.0"
-          },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "2.0.3"
@@ -13567,6 +13532,22 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "3.2.0"
+          },
+          "BuildBundlerMinifier": {
+            "target": "Package",
+            "version": "2.6.375"
+          },
+          "LigerShark.WebOptimizer.Core": {
+            "target": "Package",
+            "version": "1.0.215"
+          },
+          "BundlerMinifier.Core": {
+            "target": "Package",
+            "version": "2.6.375"
+          },
+          "bootstrap": {
+            "target": "Package",
+            "version": "4.1.0"
           }
         },
         "imports": [
@@ -13576,17 +13557,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Identity.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

@@ -14,6 +14,6 @@
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="/usr/local/share/dotnet/sdk/NuGetFallbackFolder/microsoft.netcore.app/2.0.0/build/netcoreapp2.0/Microsoft.NETCore.App.props" Condition="Exists('/usr/local/share/dotnet/sdk/NuGetFallbackFolder/microsoft.netcore.app/2.0.0/build/netcoreapp2.0/Microsoft.NETCore.App.props')" />
-    <Import Project="$(NuGetPackageRoot)ligershark.weboptimizer.core/1.0.201/build/LigerShark.WebOptimizer.Core.props" Condition="Exists('$(NuGetPackageRoot)ligershark.weboptimizer.core/1.0.201/build/LigerShark.WebOptimizer.Core.props')" />
+    <Import Project="$(NuGetPackageRoot)ligershark.weboptimizer.core/1.0.215/build/LigerShark.WebOptimizer.Core.props" Condition="Exists('$(NuGetPackageRoot)ligershark.weboptimizer.core/1.0.215/build/LigerShark.WebOptimizer.Core.props')" />
   </ImportGroup>
 </Project>

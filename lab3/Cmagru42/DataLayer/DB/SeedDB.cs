@@ -14,10 +14,10 @@ namespace DataLayer.DB
             var options = serviceProvider.GetRequiredService<DbContextOptions<CmagruDBContext>>();
             var context = new CmagruDBContext(options);
 
-            if (context.ApplicationUsers.Any())
+            if (context.Users.Any())
                 return;
 
-            context.ApplicationUsers.AddRange(
+            context.Users.AddRange(
                 new ApplicationUser()
                 {
                     UserName = "Emil",

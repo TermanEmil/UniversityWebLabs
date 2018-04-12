@@ -11,6 +11,8 @@ namespace Presentation.Models
         {
             CreateMap<RegisterViewModel, RegistrationData>();
             CreateMap<RegistrationData, ApplicationUser>();
+            CreateMap<RegisterViewModel, ApplicationUser>();
+            CreateMap<LoginViewModel, LoginData>();
         }
     }
 }

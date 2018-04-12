@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Tools\" />
     <Folder Include="Account\" />
     <Folder Include="Account\Models\" />
   </ItemGroup>
@@ -14,6 +13,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Account\Models\AppRespone.cs" />
+    <Compile Remove="Tools\HashingTools.cs" />
   </ItemGroup>
 </Project>

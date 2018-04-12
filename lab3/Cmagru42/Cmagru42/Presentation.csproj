@@ -20,17 +20,19 @@
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Models\AccountViewModels\" />
+    <Folder Include="Controllers\Extensions\" />
+    <Folder Include="Views\PhotoRoom\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="2.6.362" />
-    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.201" />
-    <PackageReference Include="BundlerMinifier.Core" Version="2.6.362" />
-    <PackageReference Include="bootstrap" Version="4.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="BuildBundlerMinifier" Version="2.6.375" />
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.215" />
+    <PackageReference Include="BundlerMinifier.Core" Version="2.6.375" />
+    <PackageReference Include="bootstrap" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +52,7 @@
   <ItemGroup>
     <Compile Remove="Migrations\20180404214929_InitialCreate.cs" />
     <Compile Remove="Migrations\20180405151501_InitialCreate.cs" />
+    <Compile Remove="Controllers\Helpers\ControllerExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />

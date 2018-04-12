@@ -10,7 +10,7 @@ namespace BusinessLayer.Account.Models
         Fail
     }
 
-    public class UserRegisterResponse
+    public class UserRegisterResponse : IAppResponse
     {
         public bool Success
         {

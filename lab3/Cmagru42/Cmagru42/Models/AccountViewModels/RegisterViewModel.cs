@@ -6,16 +6,13 @@ namespace Presentation.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "UserName")]
-        [StringLength(
-            30,
-            MinimumLength = 3,
-            ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
+        [MaxLength(256)]
         public string UserName { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [MaxLength(256)]
         public string Email { get; set; }
 
         [Required]
@@ -23,7 +20,7 @@ namespace Presentation.Models.AccountViewModels
         [DataType(DataType.Password)]
         [StringLength(
             124,
-            MinimumLength = 6,
+            MinimumLength = 3,
             ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
         public string Password { get; set; }
 

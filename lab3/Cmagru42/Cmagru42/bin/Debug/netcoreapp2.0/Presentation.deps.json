@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "d10e2d8286d76bdf20b423205c3baf29f13accbe"
+    "signature": "48652ded98ea837c855471bfccc5a08c35e68c11"
   },
   "compilationOptions": {
     "defines": [
@@ -25,15 +25,15 @@
         "dependencies": {
           "AutoMapper": "6.2.2",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.2.0",
-          "BuildBundlerMinifier": "2.6.362",
-          "BundlerMinifier.Core": "2.6.362",
+          "BuildBundlerMinifier": "2.6.375",
+          "BundlerMinifier.Core": "2.6.375",
           "BusinessLayer": "1.0.0",
           "DataLayer": "1.0.0",
-          "LigerShark.WebOptimizer.Core": "1.0.201",
+          "LigerShark.WebOptimizer.Core": "1.0.215",
           "Microsoft.AspNetCore.All": "2.0.6",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.3",
-          "bootstrap": "4.0.0"
+          "bootstrap": "4.1.0"
         },
         "runtime": {
           "Presentation.dll": {}
@@ -76,17 +76,17 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "bootstrap/4.0.0": {
+      "bootstrap/4.1.0": {
         "dependencies": {
           "jQuery": "3.0.0",
-          "popper.js": "1.12.9"
+          "popper.js": "1.14.0"
         }
       },
-      "BuildBundlerMinifier/2.6.362": {},
-      "BundlerMinifier.Core/2.6.362": {
+      "BuildBundlerMinifier/2.6.375": {},
+      "BundlerMinifier.Core/2.6.375": {
         "dependencies": {
           "Microsoft.NETCore.App": "2.0.0",
-          "NUglify": "1.5.8",
+          "NUglify": "1.5.10",
           "Newtonsoft.Json": "10.0.1"
         },
         "runtime": {
@@ -137,7 +137,7 @@
         }
       },
       "LigerShark.WebOptimizer.Analyzers/1.0.6": {},
-      "LigerShark.WebOptimizer.Core/1.0.201": {
+      "LigerShark.WebOptimizer.Core/1.0.215": {
         "dependencies": {
           "LigerShark.WebOptimizer.Analyzers": "1.0.6",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.2",
@@ -145,7 +145,7 @@
           "Microsoft.AspNetCore.Mvc.TagHelpers": "2.0.3",
           "Microsoft.AspNetCore.Razor.Runtime": "2.0.2",
           "Microsoft.Extensions.Configuration.Binder": "2.0.1",
-          "NUglify": "1.5.8"
+          "NUglify": "1.5.10"
         },
         "runtime": {
           "lib/netstandard2.0/WebOptimizer.Core.dll": {}
@@ -200,14 +200,6 @@
         },
         "compile": {
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Identity.Core/2.2.1": {
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
-        },
-        "compile": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.0.2": {
@@ -2591,7 +2583,7 @@
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
         }
       },
-      "NUglify/1.5.8": {
+      "NUglify/1.5.10": {
         "dependencies": {
           "NETStandard.Library": "2.0.0",
           "System.Security.Cryptography.Algorithms": "4.3.0"
@@ -2603,7 +2595,7 @@
           "lib/netstandard1.3/NUglify.dll": {}
         }
       },
-      "popper.js/1.12.9": {},
+      "popper.js/1.14.0": {},
       "Remotion.Linq/2.1.1": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -4159,7 +4151,7 @@
         "dependencies": {
           "AutoMapper": "6.2.2",
           "DataLayer": "1.0.0",
-          "Microsoft.AspNet.Identity.Core": "2.2.1"
+          "Microsoft.AspNetCore.Identity": "2.0.2"
         },
         "runtime": {
           "BusinessLayer.dll": {}
@@ -4170,7 +4162,8 @@
       },
       "DataLayer/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNet.Identity.Core": "2.2.1",
+          "Microsoft.AspNetCore.Identity": "2.0.2",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.0.2",
           "Microsoft.EntityFrameworkCore": "2.0.2",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.0.2"
         },
@@ -4379,26 +4372,26 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/3.2.0",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.3.2.0.nupkg.sha512"
     },
-    "bootstrap/4.0.0": {
+    "bootstrap/4.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-aW3kJMmptC2GD4+hIa3x3fSrPF4VkrWQ2PRBEJg+o7lMRMi7u4UW9igY/GP02/wrIpH/CusL+mQIM42YhvA3XQ==",
-      "path": "bootstrap/4.0.0",
-      "hashPath": "bootstrap.4.0.0.nupkg.sha512"
+      "sha512": "sha512-MpThvC2aO+DVfGP76J4TBIZ23pwyIkcGp2miNvQITqjNoGwLtGfY7pRU1u33Ot/7DU20LY2Ur6ZYlM0KGtCglg==",
+      "path": "bootstrap/4.1.0",
+      "hashPath": "bootstrap.4.1.0.nupkg.sha512"
     },
-    "BuildBundlerMinifier/2.6.362": {
+    "BuildBundlerMinifier/2.6.375": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-J8vHrhvkvBAkzf5eA0zDu9Z4RbVlA8lYWGq0UyvWh98kKpqQZpzUe3yC89Rq9nQyiO0pdULrPPs9sSmx+xq8jA==",
-      "path": "buildbundlerminifier/2.6.362",
-      "hashPath": "buildbundlerminifier.2.6.362.nupkg.sha512"
+      "sha512": "sha512-xUPSZvHfNQZY3/4/mvBFSuEZ2cOdxTBm6aIobQyRzVgxEVpyV+G3gT4mN3gO+/ehPOSWVDgER62G5EK1KhXQ4A==",
+      "path": "buildbundlerminifier/2.6.375",
+      "hashPath": "buildbundlerminifier.2.6.375.nupkg.sha512"
     },
-    "BundlerMinifier.Core/2.6.362": {
+    "BundlerMinifier.Core/2.6.375": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/g2rB/LFwDO/qPd4+Ld/w9yhzZJ7Q4CTr9p3YHm+k/FR5/eFYdDhjTsiav7avy1f0gR5Beky1ygNKorassdJkw==",
-      "path": "bundlerminifier.core/2.6.362",
-      "hashPath": "bundlerminifier.core.2.6.362.nupkg.sha512"
+      "sha512": "sha512-dGLElri2nWWuUzneWT4ntGd/4tIDQwvoL2HpZt+5IgWQA+bK6nTXWayWXcL7crZjeUpq04Wxy3zbxirYJr3YWw==",
+      "path": "bundlerminifier.core/2.6.375",
+      "hashPath": "bundlerminifier.core.2.6.375.nupkg.sha512"
     },
     "jQuery/3.0.0": {
       "type": "package",
@@ -4421,12 +4414,12 @@
       "path": "ligershark.weboptimizer.analyzers/1.0.6",
       "hashPath": "ligershark.weboptimizer.analyzers.1.0.6.nupkg.sha512"
     },
-    "LigerShark.WebOptimizer.Core/1.0.201": {
+    "LigerShark.WebOptimizer.Core/1.0.215": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-s6YMRnR4HC1TfRACM2OfzlHRsTrsIQrXp8fTp34B7kYsEqwswSPSTkjayiSt/BYn2DrnBTZuY+jLcwH+SwPxsw==",
-      "path": "ligershark.weboptimizer.core/1.0.201",
-      "hashPath": "ligershark.weboptimizer.core.1.0.201.nupkg.sha512"
+      "sha512": "sha512-gPTZBI+XgJwCBOUBiG9RNJ2sp689XLWFop3Xbkb21Ddx3ctp9CwvGd52Tzvaj4klga2dy8AOJc56u9LqLd9AxA==",
+      "path": "ligershark.weboptimizer.core/1.0.215",
+      "hashPath": "ligershark.weboptimizer.core.1.0.215.nupkg.sha512"
     },
     "Microsoft.ApplicationInsights/2.4.0": {
       "type": "package",
@@ -4448,13 +4441,6 @@
       "sha512": "sha512-RWxdX90MY6tNF8S5lwRvJcHiBMIWwVLCxd4TGIEl3X0yAKaolY2vs4zTCvyCIVkEAMs1aInTgWkYwOjzYvAHWw==",
       "path": "microsoft.applicationinsights.dependencycollector/2.4.1",
       "hashPath": "microsoft.applicationinsights.dependencycollector.2.4.1.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Identity.Core/2.2.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-jjurNglpmcv0SLBd4Fmar8ZoJ2yqfTf6iuP3p8wVH7Nvanfo8l3qTBzq3qRQz2BQlb6iXJiDWPjcnIImVz512g==",
-      "path": "microsoft.aspnet.identity.core/2.2.1",
-      "hashPath": "microsoft.aspnet.identity.core.2.2.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.0.2": {
       "type": "package",
@@ -5653,19 +5639,19 @@
       "path": "nuget.frameworks/4.0.0",
       "hashPath": "nuget.frameworks.4.0.0.nupkg.sha512"
     },
-    "NUglify/1.5.8": {
+    "NUglify/1.5.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QXYmYpvLKoBA9o+oL6PrfzaEiFHA6MRld2eb3wEed44PSNnrVQwqBNRk6hJWCvyt8QS6XPxS+J0Hcp2aot5S8Q==",
-      "path": "nuglify/1.5.8",
-      "hashPath": "nuglify.1.5.8.nupkg.sha512"
+      "sha512": "sha512-do9KYDUEbCVMkSFF3P3lJtcCuLLpRAxchFaIY7vidfB4hgdik97f8iqj0dVmJK1X3eZO8jTuGD0CUUYbaFTR8Q==",
+      "path": "nuglify/1.5.10",
+      "hashPath": "nuglify.1.5.10.nupkg.sha512"
     },
-    "popper.js/1.12.9": {
+    "popper.js/1.14.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WfoI8YXFx31zr8w6AvYMmqKihR3a/wLc5wBhu41ApgBukTM8C2UHNSRFrO6485SDQ/HKoSn9yiEMgfBx1LVNNw==",
-      "path": "popper.js/1.12.9",
-      "hashPath": "popper.js.1.12.9.nupkg.sha512"
+      "sha512": "sha512-SPxZdXknelgQ015wey7GMZvsVdt/SyEmHYORhEp5k/uF9MUk9DPtkn+6dR98fud2hVWJjZm9KKr474+r7WQt+A==",
+      "path": "popper.js/1.14.0",
+      "hashPath": "popper.js.1.14.0.nupkg.sha512"
     },
     "Remotion.Linq/2.1.1": {
       "type": "package",
