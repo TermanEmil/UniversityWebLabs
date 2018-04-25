@@ -1,0 +1,81 @@
+﻿@model GridPhotosViewModel
+
+@{
+    ViewData["Title"] = "Photo Wall";
+}
+
+@section Styles {
+<style>
+    .grid-image {
+        width: 150px;
+        height: 150px;
+        background-color: black;
+    }
+
+    .thumb-up-img {
+        width:  15px;
+        height: 15px;
+        display: inline;
+    }
+
+    .likes-count {
+        display: inline;
+        white-space:nowrap;
+    }
+</style>
+}
+
+<template id="grid-image-template">
+    <div class="col-md-2 col-sm-3 col-xs-12">
+        <image class="grid-image"></image>
+        <image class="thumb-up-img" src="/imgs/thumb-up.png"></image>
+        <p class="likes-count">99</p>
+    </div>
+</template>
+
+<div id="grid-images" class="row">
+    
+</div>
+
+@section Scripts {
+<script>
+    function displayGridImg(
+        template,
+        imgsHolder,
+        imgBase64,
+        imgId,
+        likes,
+        commentsCount)
+    {   
+        var img = template.content.cloneNode(true);
+        img.querySelector(".grid-image").src = imgBase64;
+        img.querySelector(".likes-count").innerHTML = likes;
+
+        imgsHolder.appendChild(img);
+    }
+
+    function displayAllImgsFromModel() {
+        var template = document.getElementById("grid-image-template");
+        var imgsHolder = document.getElementById("grid-images");
+
+        @foreach (var photo in Model.Photos)
+        {
+            <text>
+            displayGridImg(
+                template,
+                imgsHolder,
+                '@Html.Raw(photo.Base64Img)',
+                '@Html.Raw(photo.ImgId)',
+                '@Html.Raw(photo.Likes)',
+                '@Html.Raw(photo.CommentsCount)');
+            </text>
+        }
+    }
+
+    function likeImg(imgId) {
+
+    }
+
+    displayAllImgsFromModel();
+</script>
+}

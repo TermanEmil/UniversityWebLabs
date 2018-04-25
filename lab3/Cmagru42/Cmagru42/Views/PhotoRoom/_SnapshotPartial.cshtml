@@ -1,0 +1,18 @@
+﻿<div>
+    <div>
+        <button id="webcamOnOffBtn" onclick="webcamToggle();">Start WebCam</button>
+        <button onclick="snapshot();">Take Snapshot</button>
+        <button onclick="uploadCurrentSnapshot();">Upload</button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <video width=300 height=300 id="mainVideoStream" autoplay=true>
+                Your browser doesn't support video tag.
+            </video>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <canvas id="snapshotCanvas" width=300 height=300></canvas>
+        </div>
+    </div>
+</div>

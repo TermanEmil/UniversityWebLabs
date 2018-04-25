@@ -11,5 +11,8 @@ namespace DataLayer.DB
             : base(options)
         {
         }
+
+        public DbSet<ImgUpload> ImgUploads { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

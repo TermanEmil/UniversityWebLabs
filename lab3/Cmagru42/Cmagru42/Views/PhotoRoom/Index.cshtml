@@ -1,5 +1,104 @@
-﻿@{
+﻿@model List<OverlayImgViewModel>
+
+@{
     ViewData["Title"] = "Photoroom";
 }
 
-Photoroom
+@section Styles {
+    <style>
+    #mainVideoStream {
+        background-color: black;
+    }
+
+    #snapshotCanvas {
+        background-color: black;
+    }
+
+    .side-img {
+        width: 300px;
+        height: 300px;
+        background-color: black;
+    }
+    </style>
+}
+
+<div class="photoroom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 main-edit-zone">
+                @await Html.PartialAsync("_SnapshotPartial")
+
+                <!-- Upload local file form -->
+                <form method="post" enctype="multipart/form-data"
+                        asp-controller="PhotoRoom" asp-action="UploadImgPath">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <p>Upload a local image.</p>
+                            <input type="file" name="files" multiple="false" />
+                        </div>
+                        <div class="col-md-10">
+                            <input type="submit" value="Upload" />
+                        </div>
+                    </div>
+                    <p id="loading-file-errors" class="error-zone"></p>
+                </form>
+
+                @{
+                    if (ViewData["UploadImgError"] != null)
+                    {
+                        <p class="error-zone">Error: @ViewData["UploadImgError"]</p>
+                    }
+                }
+            </div>
+            <div id="side-zone" class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    function uploadCurrentSnapshot() {
+        var data = { RawImg: canvas.toDataURL() };
+
+        console.log('Submitting form...');
+        $.ajax({
+            type: 'POST',
+            url: '/Photoroom/UploadImgRaw',
+            dataType: 'text',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(result) {
+            }
+        });
+    }
+
+    function overlayImg(img) {
+        var snapshotCanvas = document.getElementById("snapshotCanvas");
+        var ctx = snapshotCanvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+    }
+    
+    function createSideImg(rawImg, parent) {
+        var img = new Image();
+        img.classList.add("side-img");
+        img.src = rawImg;
+
+        img.onclick = function() {
+            overlayImg(this);
+        };
+        parent.appendChild(img);
+    }
+    
+    function loadSideImgs() {
+        var parent = document.getElementById("side-zone");
+        @foreach (var img in Model) {
+            @: createSideImg('@Html.Raw(img.ImgBase64)', parent);
+        }
+    }
+
+    initWebCam();
+    loadSideImgs();
+</script>
+}

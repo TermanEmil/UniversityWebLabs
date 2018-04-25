@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Account\" />
-    <Folder Include="Account\Models\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -18,5 +14,6 @@
   <ItemGroup>
     <Compile Remove="Account\Models\AppRespone.cs" />
     <Compile Remove="Tools\HashingTools.cs" />
+    <Compile Remove="Account\AccountManager.cs" />
   </ItemGroup>
 </Project>

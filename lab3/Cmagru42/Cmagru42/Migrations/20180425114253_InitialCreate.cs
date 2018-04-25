@@ -48,6 +48,34 @@ namespace Presentation.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Content = table.Column<string>(maxLength: 256, nullable: true),
+                    ImgId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ImgUploads",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Likes = table.Column<int>(nullable: false),
+                    RawImg = table.Column<byte[]>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImgUploads", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -207,6 +235,12 @@ namespace Presentation.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "ImgUploads");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

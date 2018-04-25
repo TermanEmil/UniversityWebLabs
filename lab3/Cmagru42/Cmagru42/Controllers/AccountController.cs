@@ -1,19 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
-using BusinessLayer.Account;
-using BusinessLayer.Account.Models;
+using DataLayer.AppUser;
 using DataLayer.DB;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Presentation.Extensions;
 using Presentation.Models.AccountViewModels;
-using Presentation.Controllers.Extensions;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using System.Linq;
-using Microsoft.AspNetCore.Identity;
-using DataLayer.AppUser;
+using Presentation.Services;
 
 namespace Presentation.Controllers
 {
@@ -21,33 +18,31 @@ namespace Presentation.Controllers
     [Route("Account")]
     public class AccountController : Controller
     {
-        //private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
-        private readonly AccountManager _accountManager;
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailSender _emailSender;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             CmagruDBContext context,
             ILogger<AccountController> logger,
-            IMapper mapper)
+            IMapper mapper,
+            IEmailSender emailSender)
         {
             _logger = logger;
             _mapper = mapper;
-            _accountManager = new AccountManager(context, mapper);
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         [Route("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string ReturnUrl = null)
         {
-            _logger.LogInformation("MyIdentity: " + _signInManager.IsSignedIn(User));// User.Identity.IsAuthenticated);
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             ViewData["ReturnUrl"] = ReturnUrl;
             return View();
@@ -59,8 +54,6 @@ namespace Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            _logger.LogInformation("Login: POST");
-
             ViewData["ReturnUrl"] = returnUrl;
             if (!ModelState.IsValid)
                 return View(model);
@@ -121,7 +114,18 @@ namespace Presentation.Controllers
 
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
+                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    ////var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    //var ctokenLink = Url.Action("ConfirmEmail", "Account", new
+                    //{
+                    //    userid = user.Id,
+                    //    code = code
+                    //}, protocol: HttpContext.Request.Scheme);
+                    //ViewBag.token = ctokenLink;
+
+                    //await _emailSender.SendEmailConfirmationAsync(model.Email, ctokenLink);
+                    //return View(model);
+                    await _signInManager.SignInAsync(user, null);
                     return this.RedirectToActionCtrl(
                         nameof(HomeController.Index),
                         nameof(HomeController));
@@ -134,6 +138,24 @@ namespace Presentation.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                _logger.LogInformation("Not found: userid = " + userId + "; code = " + code);
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            return View(result.Succeeded ? "EmailConfirmed" : "Error");
         }
 
         #region Helpers

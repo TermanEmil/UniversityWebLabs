@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using DataLayer.AppUser;
 using DataLayer.DB;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Presentation.Services;
 
 namespace Presentation
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddAutoMapper();
 
             services.AddWebOptimizer(pipeline =>
@@ -32,7 +35,10 @@ namespace Presentation
                 options.UseSqlite("Data Source=Cmagru.db",
                                   b => b.MigrationsAssembly("Presentation")));
             
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                //options.SignIn.RequireConfirmedEmail = true;
+            })
                     .AddEntityFrameworkStores<CmagruDBContext>()
                     .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
@@ -44,18 +50,22 @@ namespace Presentation
                 options.Password.RequireUppercase = false;
                 options.User.RequireUniqueEmail = true;
             });
+
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 options.SlidingExpiration = true;
             });
+
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseAuthentication();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -63,7 +73,9 @@ namespace Presentation
 
             app.UseWebOptimizer();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc();
+            //app.UseMvcWithDefaultRoute();
 
             app.Run(async (context) =>
             {

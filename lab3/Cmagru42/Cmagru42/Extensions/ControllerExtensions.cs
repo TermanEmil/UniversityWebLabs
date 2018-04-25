@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Presentation.Controllers.Extensions
+namespace Presentation.Extensions
 {
-    public static class _ControllerExtensions
+    public static class ControllerExtensions
     {
         public static IActionResult RedirectToActionCtrl(
             this Controller ctrl,

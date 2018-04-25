@@ -20,8 +20,13 @@
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Models\AccountViewModels\" />
-    <Folder Include="Controllers\Extensions\" />
     <Folder Include="Views\PhotoRoom\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\PhotoRoomViewModels\" />
+    <Folder Include="Views\PhotoWall\" />
+    <Folder Include="Models\PhotoWallViewModels\" />
+    <Folder Include="wwwroot\imgs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +38,7 @@
     <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.215" />
     <PackageReference Include="BundlerMinifier.Core" Version="2.6.375" />
     <PackageReference Include="bootstrap" Version="4.1.0" />
+    <PackageReference Include="Sendgrid" Version="9.9.0" />
   </ItemGroup>
 
   <ItemGroup>
