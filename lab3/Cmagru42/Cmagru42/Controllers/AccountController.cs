@@ -22,21 +22,18 @@ namespace Presentation.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IEmailSender _emailSender;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             CmagruDBContext context,
             ILogger<AccountController> logger,
-            IMapper mapper,
-            IEmailSender emailSender)
+            IMapper mapper)
         {
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
         }
 
         [Route("Login")]

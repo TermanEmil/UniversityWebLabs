@@ -1,9 +1,9 @@
 ﻿.body-content {
-    margin-top: 58px;
+    margin-top: 58px
 }
 
 body {
-    background-color: pink;
+    background-color: pink
 }
 
 input[type=text], input[type=password], input[type=email] {
@@ -25,10 +25,6 @@ button.account-submit {
     width: 100%
 }
 
-button.account-submit:hover {
-    opacity: 0.8
-}
-
-.error-zone {
-    color: red
-}
+    button.account-submit:hover {
+        opacity: 0.8
+    }
