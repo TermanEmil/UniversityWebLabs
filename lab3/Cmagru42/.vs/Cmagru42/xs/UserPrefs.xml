@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/PhotoRoom/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Controllers/PhotoRoomController.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="5" Column="20" />
-      <File FileName="Cmagru42/Views/PhotoRoom/Index.cshtml" Line="61" Column="1" />
-      <File FileName="Cmagru42/wwwroot/js/SnapshotCtrl.js" Line="123" Column="1" />
-      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="40" Column="40" />
+      <File FileName="Cmagru42/Views/PhotoRoom/Index.cshtml" Line="66" Column="39" />
+      <File FileName="Cmagru42/wwwroot/js/SnapshotCtrl.js" Line="104" Column="36" />
+      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="59" Column="9" />
+      <File FileName="Cmagru42/Views/PhotoRoom/_SnapshotPartial.cshtml" Line="6" Column="16" />
+      <File FileName="Cmagru42/Controllers/PhotoRoomController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

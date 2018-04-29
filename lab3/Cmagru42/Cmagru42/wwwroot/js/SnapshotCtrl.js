@@ -60,7 +60,7 @@ function snapshot()
 {
     if (webcamStream == undefined)
     {
-        alert("Please start the webcam");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         return;
     }
     
@@ -78,6 +78,7 @@ function webcamToggle()
     {
         startWebcam();
     }
+
     if (webcamStream)
     {
         stopWebcam();
@@ -90,16 +91,22 @@ function webcamToggle()
 }
 
 function uploadCurrentSnapshot() {
-    var data = { RawImg: canvas.toDataURL() };
+    var statusLog = document.getElementById("upload-current-snapshot-status");
+    statusLog.innerHTML = "Uploading...";
 
-    console.log('Submitting form...');
+    var data = { RawImg: canvas.toDataURL() };
     $.ajax({
         type: 'POST',
         url: '/Photoroom/UploadImgRaw',
-        dataType: 'text',
+        dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(result) {
+            if (result.success) {
+                statusLog.innerHTML = "Successfully uploaded!";
+            } else {
+                statusLog.innerHTML = "Couldn't upload...";
+            }
         }
     });
 }

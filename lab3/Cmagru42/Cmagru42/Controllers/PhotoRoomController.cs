@@ -48,7 +48,11 @@ namespace Presentation.Controllers
         {
             var user = await GetCurrentUserAsync();
             await _photoRoom.UploadImgFromRawStrAsync(data.RawImg, user);
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return Json(new
+            {
+                success = true
+            });
         }
 
         [HttpPost]
