@@ -24,6 +24,7 @@
     }
 </style>
 }
+
 <!-- Img display template -->
 <template id="grid-image-template">
     <div class="grid-img col-md-2 col-sm-3 col-xs-12">
@@ -38,6 +39,11 @@
 <div id="grid-images" class="row"> 
 </div>
 
+<center>
+    <button id="more-imgs-btn" onclick="loadImages(deltaImgsToLoad);">More!</button>
+    <p id="loading-img-msg"></p>
+</center>
+
 @section Scripts {
     <environment include="Development">
         <script src="~/js/LoadImgs.js" asp-append-version="true"></script>
@@ -48,28 +54,7 @@
     </environment>
 
     <script>
-        function displayAllImgsFromModel() {
-            var template = document.getElementById("grid-image-template");
-            var imgsHolder = document.getElementById("grid-images");
-
-            @*@foreach (var photo in Model.Photos)
-            {
-                <text>
-                    displayGridImg(
-                        template,
-                        imgsHolder,
-                        '@Html.Raw(photo.Base64Img)',
-                        '@Html.Raw(photo.ImgId)',
-                        '@Html.Raw(photo.Likes)',
-                        '@Html.Raw(photo.CommentsCount)');
-                </text>
-            } *@
-        }
-    
-        var template = document.getElementById("grid-image-template");
-        var imgsHolder = document.getElementById("grid-images");
-
-        for (var i = 0; i < 20; i++)
-            loadNewImg(i, template, imgsHolder);
+        initPhotoWall();
+        loadImages(deltaImgsToLoad);
     </script>
 }

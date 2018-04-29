@@ -1,6 +1,12 @@
 ﻿var loadedImgsIds = [ ];
+var imgTemplate;
+var imgsHolder;
+var deltaImgsToLoad = 5;
+var moreImgsBtn;
+var loadingImgsMsgP;
+var requestStatuses = {};
 
-function loadNewImg(imgNb, imgTemplate, imgsHolder) {
+function loadNewImg(imgNb) {
     var data = {
         PhotosIds: loadedImgsIds,
         RequiredImg: imgNb
@@ -30,10 +36,52 @@ function loadNewImg(imgNb, imgTemplate, imgsHolder) {
             } else {
                 imgsHolder.removeChild(imgHolder);
             }
+
+            requestStatuses[result.imgNb] = true;
+            if (loadImgsRequestsFinished())
+                onLoadImgsEnd();
+        },
+        error: function(xhr, textStatus, error) {
+            requestStatuses[result.imgNb] = true;
+            if (loadImgsRequestsFinished())
+                onLoadImgsEnd();
         }
     });
 }
 
-function likeImg(imgId) {
+function initPhotoWall()
+{
+    imgTemplate = document.getElementById("grid-image-template");
+    imgsHolder = document.getElementById("grid-images");
+    moreImgsBtn = document.getElementById("more-imgs-btn");
+    loadingImgsMsgP = document.getElementById("loading-img-msg");
+}
 
+function loadImages(n)
+{
+    var len = loadedImgsIds.length;
+
+    onLoadImgsStart();
+    for (var i = len; i < n + len; i++) {
+        requestStatuses[i] = false;
+        loadNewImg(i);
+    }
+}
+
+function loadImgsRequestsFinished()
+{
+    for (var i = 0; i < requestStatuses.length; i++)
+        if (requestStatuses[i] == false)
+            return false;
+    return true;
+}
+
+function onLoadImgsStart()
+{
+    loadingImgsMsgP.innerHTML = "Loading...";
+}
+
+function onLoadImgsEnd()
+{
+    loadingImgsMsgP.innerHTML = "";
 }
