@@ -9,5 +9,11 @@ namespace DataLayer
         public string UserId { get; set; }
         public byte[] RawImg { get; set; }
         public int Likes { get; set; }
+
+
+        public string RawImgToBase64()
+        {
+            return "data:image/png;base64," + Convert.ToBase64String(RawImg);
+        }
     }
 }

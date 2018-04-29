@@ -24,58 +24,52 @@
     }
 </style>
 }
-
+<!-- Img display template -->
 <template id="grid-image-template">
-    <div class="col-md-2 col-sm-3 col-xs-12">
-        <image class="grid-image"></image>
-        <image class="thumb-up-img" src="/imgs/thumb-up.png"></image>
-        <p class="likes-count">99</p>
+    <div class="grid-img col-md-2 col-sm-3 col-xs-12">
+        <image class="grid-image" src="/imgs/loadingImg.png"></image>
+        <div id="likes">
+            <image class="thumb-up-img" src="/imgs/thumb-up.png"></image>
+            <p class="likes-count">...</p>
+        </div>
     </div>
 </template>
 
-<div id="grid-images" class="row">
-    
+<div id="grid-images" class="row"> 
 </div>
 
 @section Scripts {
-<script>
-    function displayGridImg(
-        template,
-        imgsHolder,
-        imgBase64,
-        imgId,
-        likes,
-        commentsCount)
-    {   
-        var img = template.content.cloneNode(true);
-        img.querySelector(".grid-image").src = imgBase64;
-        img.querySelector(".likes-count").innerHTML = likes;
+    <environment include="Development">
+        <script src="~/js/LoadImgs.js" asp-append-version="true"></script>
+    </environment>
 
-        imgsHolder.appendChild(img);
-    }
+    <environment exclude="Development">
+        <script src="~/js/LoadImgs.min.js" asp-append-version="true"></script>
+    </environment>
 
-    function displayAllImgsFromModel() {
+    <script>
+        function displayAllImgsFromModel() {
+            var template = document.getElementById("grid-image-template");
+            var imgsHolder = document.getElementById("grid-images");
+
+            @*@foreach (var photo in Model.Photos)
+            {
+                <text>
+                    displayGridImg(
+                        template,
+                        imgsHolder,
+                        '@Html.Raw(photo.Base64Img)',
+                        '@Html.Raw(photo.ImgId)',
+                        '@Html.Raw(photo.Likes)',
+                        '@Html.Raw(photo.CommentsCount)');
+                </text>
+            } *@
+        }
+    
         var template = document.getElementById("grid-image-template");
         var imgsHolder = document.getElementById("grid-images");
 
-        @foreach (var photo in Model.Photos)
-        {
-            <text>
-            displayGridImg(
-                template,
-                imgsHolder,
-                '@Html.Raw(photo.Base64Img)',
-                '@Html.Raw(photo.ImgId)',
-                '@Html.Raw(photo.Likes)',
-                '@Html.Raw(photo.CommentsCount)');
-            </text>
-        }
-    }
-
-    function likeImg(imgId) {
-
-    }
-
-    displayAllImgsFromModel();
-</script>
+        for (var i = 0; i < 20; i++)
+            loadNewImg(i, template, imgsHolder);
+    </script>
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using BusinessLayer;
+using DataLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
 using Microsoft.AspNetCore.Identity;
@@ -15,9 +13,6 @@ namespace Presentation.Controllers
     [Route("PhotoWall")]
     public class PhotoWallController : Controller
     {
-        // This number of images will be added if more imgs are required.
-        private readonly int _deltaNbOfImgs = 20;
-
         private readonly ILogger _logger;
         private readonly CmagruDBContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -35,42 +30,46 @@ namespace Presentation.Controllers
         [Route(""), Route("Index")]
         public IActionResult Index(GridPhotosViewModel model)
         {
-            if (model.Photos == null)
-            {
-                model = new GridPhotosViewModel()
-                {
-                    Photos = new List<PhotoViewModel>(),
-                    FilterByLikes = 1
-                };
-                AddPhotosToModel(model);
-            }
-            _logger.LogInformation(model.Photos.Count.ToString());
+            //if (model.Photos == null)
+            //{
+            //    model = new GridPhotosViewModel()
+            //    {
+            //        Photos = new List<PhotoViewModel>(),
+            //        FilterByLikes = 1
+            //    };
+            //    AddPhotosToModel(model);
+            //}
+            //_logger.LogInformation(model.Photos.Count.ToString());
             return View(model);
         }
 
         [HttpPost]
-        [Route("GetPhotos")]
-        public IActionResult GetPhotos([FromBody] GridPhotosViewModel model)
+        [Route("GetNewImg")]
+        public JsonResult GetNewImg([FromBody] GridPhotosViewModel model)
         {
-            AddPhotosToModel(model);
-            return RedirectToAction("Index", model);
-        }
+            var querry = _context.ImgUploads
+                                 .Where(img => !model.DisplayedImgIds.Contains(img.Id))
+                                 .OrderByDescending(x => x.Likes);
 
-        private void AddPhotosToModel(GridPhotosViewModel model)
-        {
-            var imgs = _context.ImgUploads.Where(img =>
-                                                 model.Photos.FirstOrDefault(
-                                                     photo =>
-                                                     photo.ImgId == img.Id) == null)
-                               .Take(model.Photos.Count + _deltaNbOfImgs);
+            if (querry.Count() <= model.RequiredImg)
+                return Json(new
+                {
+                    success = false,
+                    imgNb = model.RequiredImg,
+                });
+            
+            var rsImg = querry.Skip(model.RequiredImg).First();
+            int commentsCount = _context.Comments.Count(c => c.ContentId == rsImg.Id);
 
-            model.Photos.AddRange(imgs.Select(img => new PhotoViewModel()
+            return Json(new
             {
-                ImgId = img.Id,
-                Likes = img.Likes,
-                Base64Img = PhotoRoom.RawImgToBase64(img.RawImg),
-                CommentsCount = _context.Comments.Where(c => c.ImgId == img.Id).Count()
-            }));
+                success = true,
+                imgNb = model.RequiredImg,
+                imgId = rsImg.Id,
+                imgBase64 = rsImg.RawImgToBase64(),
+                likes = rsImg.Likes,
+                comments = commentsCount
+            });
         }
     }
 }

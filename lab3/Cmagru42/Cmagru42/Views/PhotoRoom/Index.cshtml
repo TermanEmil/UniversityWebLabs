@@ -70,8 +70,10 @@
 <script>
     function loadSideImgs() {
         var parent = document.getElementById("side-zone");
-        @foreach (var img in Model) {
-            @: createSideImg('@Html.Raw(img.ImgBase64)', parent);
+        @if (Model != null) {
+            foreach (var img in Model) {
+                @: createSideImg('@Html.Raw(img.ImgBase64)', parent);
+            }
         }
     }
     

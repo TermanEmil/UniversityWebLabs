@@ -109,7 +109,7 @@ namespace Presentation.Controllers
                                .Where(x => x.UserId.Equals(overlayerDB.Id))
                                .Select(x => new OverlayImgViewModel
                                {
-                                    ImgBase64 = PhotoRoom.RawImgToBase64(x.RawImg)
+                                    ImgBase64 = x.RawImgToBase64()
                                }).ToList();
             return imgs;
 

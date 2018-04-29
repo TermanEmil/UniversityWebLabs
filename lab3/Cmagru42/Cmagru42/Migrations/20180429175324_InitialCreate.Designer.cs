@@ -11,7 +11,7 @@ using System;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(CmagruDBContext))]
-    [Migration("20180425114253_InitialCreate")]
+    [Migration("20180429175324_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,7 +78,7 @@ namespace Presentation.Migrations
                     b.Property<string>("Content")
                         .HasMaxLength(256);
 
-                    b.Property<string>("ImgId");
+                    b.Property<string>("ContentId");
 
                     b.Property<string>("UserId");
 

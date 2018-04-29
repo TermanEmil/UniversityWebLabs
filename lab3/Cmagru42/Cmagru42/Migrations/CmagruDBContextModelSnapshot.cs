@@ -77,7 +77,7 @@ namespace Presentation.Migrations
                     b.Property<string>("Content")
                         .HasMaxLength(256);
 
-                    b.Property<string>("ImgId");
+                    b.Property<string>("ContentId");
 
                     b.Property<string>("UserId");
 

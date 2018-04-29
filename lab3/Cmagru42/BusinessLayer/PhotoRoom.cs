@@ -67,10 +67,5 @@ namespace BusinessLayer
             var result = await _context.ImgUploads.AddAsync(imgUpload);
             await _context.SaveChangesAsync();
         }
-
-        public static string RawImgToBase64(byte[] rawImg)
-        {
-            return "data:image/png;base64," + Convert.ToBase64String(rawImg);
-        }
     }
 }

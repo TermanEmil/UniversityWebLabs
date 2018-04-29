@@ -5,8 +5,8 @@ namespace Presentation.Models.PhotoWallViewModels
 {
     public class GridPhotosViewModel
     {
-        public List<PhotoViewModel> Photos { get; set; }
-
+        public List<string> DisplayedImgIds { get; set; }
+        public int RequiredImg { get; set; }
         public string FilterByEmail { get; set; }
         public string FilterByUserName { get; set; }
 

@@ -25,5 +25,16 @@
       "renameLocals": true
     },
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/LoadImgs.min.js",
+    "inputFiles": [
+      "wwwroot/js/LoadImgs.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
   }
 ]

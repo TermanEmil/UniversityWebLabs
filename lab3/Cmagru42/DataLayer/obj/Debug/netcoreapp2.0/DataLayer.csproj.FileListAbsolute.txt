@@ -1,7 +1,6 @@
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/bin/Debug/netcoreapp2.0/DataLayer.deps.json
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/bin/Debug/netcoreapp2.0/DataLayer.dll
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/bin/Debug/netcoreapp2.0/DataLayer.pdb
-/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/obj/Debug/netcoreapp2.0/DataLayer.csprojResolveAssemblyReference.cache
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/obj/Debug/netcoreapp2.0/DataLayer.csproj.CoreCompileInputs.cache
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/obj/Debug/netcoreapp2.0/DataLayer.AssemblyInfoInputs.cache
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/obj/Debug/netcoreapp2.0/DataLayer.AssemblyInfo.cs

@@ -1,11 +1,18 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Controllers/PhotoRoomController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Account/LogIn.cshtml">
     <Files>
-      <File FileName="Cmagru42/Views/PhotoRoom/Index.cshtml" Line="66" Column="39" />
-      <File FileName="Cmagru42/wwwroot/js/SnapshotCtrl.js" Line="104" Column="36" />
-      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="59" Column="9" />
-      <File FileName="Cmagru42/Views/PhotoRoom/_SnapshotPartial.cshtml" Line="6" Column="16" />
-      <File FileName="Cmagru42/Controllers/PhotoRoomController.cs" Line="1" Column="1" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="46" Column="12" />
+      <File FileName="Cmagru42/Views/PhotoWall/Index.cshtml" Line="70" Column="43" />
+      <File FileName="Cmagru42/wwwroot/js/LoadImgs.js" Line="38" Column="50" />
+      <File FileName="Cmagru42/Models/PhotoWallViewModels/GridPhotosViewModel.cs" Line="9" Column="31" />
+      <File FileName="Cmagru42/Views/PhotoRoom/Index.cshtml" Line="61" Column="1" />
+      <File FileName="Cmagru42/wwwroot/js/SnapshotCtrl.js" Line="93" Column="1" />
+      <File FileName="Cmagru42/Controllers/PhotoRoomController.cs" Line="112" Column="37" />
+      <File FileName="DataLayer/ImgUpload.cs" Line="12" Column="9" />
+      <File FileName="BusinessLayer/PhotoRoom.cs" Line="69" Column="10" />
+      <File FileName="DataLayer/Comment.cs" Line="10" Column="32" />
+      <File FileName="Cmagru42/Views/Account/LogIn.cshtml" Line="28" Column="16" />
+      <File FileName="Cmagru42/Views/Shared/_NavBarPartial.cshtml" Line="14" Column="90" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

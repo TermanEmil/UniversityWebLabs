@@ -53,7 +53,7 @@ namespace Presentation.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     Content = table.Column<string>(maxLength: 256, nullable: true),
-                    ImgId = table.Column<string>(nullable: true),
+                    ContentId = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
