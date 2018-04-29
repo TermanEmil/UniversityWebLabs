@@ -25,6 +25,6 @@ button.account-submit {
     width: 100%
 }
 
-    button.account-submit:hover {
-        opacity: 0.8
-    }
+button.account-submit:hover {
+    opacity: 0.8
+}

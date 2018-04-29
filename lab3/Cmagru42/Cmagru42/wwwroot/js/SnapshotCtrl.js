@@ -88,3 +88,36 @@ function webcamToggle()
         webcamStream = undefined;
     }
 }
+
+function uploadCurrentSnapshot() {
+    var data = { RawImg: canvas.toDataURL() };
+
+    console.log('Submitting form...');
+    $.ajax({
+        type: 'POST',
+        url: '/Photoroom/UploadImgRaw',
+        dataType: 'text',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(result) {
+        }
+    });
+}
+
+function overlayImg(img) {
+    var snapshotCanvas = document.getElementById("snapshotCanvas");
+    var ctx = snapshotCanvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+}
+
+function createSideImg(rawImg, parent) {
+    var img = new Image();
+    img.classList.add("side-img");
+    img.src = rawImg;
+
+    img.onclick = function() {
+        overlayImg(this);
+    };
+    parent.appendChild(img);
+}
+

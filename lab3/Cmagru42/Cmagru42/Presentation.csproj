@@ -46,6 +46,7 @@
     <None Remove="Views\Movies\Details.cshtml" />
     <None Remove="Views\Movies\Delete.cshtml" />
     <None Remove="appsettings.Development" />
+    <None Remove="wwwroot\js\SnapshotCtrl.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Movies\Create.cshtml" />
+    <Content Remove="wwwroot\css\site.min.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20180404214929_InitialCreate.cs" />

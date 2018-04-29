@@ -25,11 +25,7 @@ namespace Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper();
-
-            services.AddWebOptimizer(pipeline =>
-            {
-                pipeline.MinifyCssFiles("~/css/site.css");
-            });
+            services.AddWebOptimizer();
 
             services.AddDbContext<CmagruDBContext>(options =>
                 options.UseSqlite("Data Source=Cmagru.db",

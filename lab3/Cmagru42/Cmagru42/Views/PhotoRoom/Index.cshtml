@@ -58,46 +58,23 @@
 </div>
 
 @section Scripts {
+<environment include="Development">
+    <script src="~/js/SnapshotCtrl.js" asp-append-version="true"></script>
+</environment>
+
+<environment exclude="Development">
+    <script src="~/js/SnapshotCtrl.min.js" asp-append-version="true"></script>
+</environment>
+
+
 <script>
-    function uploadCurrentSnapshot() {
-        var data = { RawImg: canvas.toDataURL() };
-
-        console.log('Submitting form...');
-        $.ajax({
-            type: 'POST',
-            url: '/Photoroom/UploadImgRaw',
-            dataType: 'text',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: function(result) {
-            }
-        });
-    }
-
-    function overlayImg(img) {
-        var snapshotCanvas = document.getElementById("snapshotCanvas");
-        var ctx = snapshotCanvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-    }
-    
-    function createSideImg(rawImg, parent) {
-        var img = new Image();
-        img.classList.add("side-img");
-        img.src = rawImg;
-
-        img.onclick = function() {
-            overlayImg(this);
-        };
-        parent.appendChild(img);
-    }
-    
     function loadSideImgs() {
         var parent = document.getElementById("side-zone");
         @foreach (var img in Model) {
             @: createSideImg('@Html.Raw(img.ImgBase64)', parent);
         }
     }
-
+    
     initWebCam();
     loadSideImgs();
 </script>
