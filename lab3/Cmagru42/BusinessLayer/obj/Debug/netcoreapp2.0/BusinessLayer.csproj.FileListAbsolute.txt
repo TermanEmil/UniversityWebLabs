@@ -3,9 +3,9 @@
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/bin/Debug/netcoreapp2.0/BusinessLayer.pdb
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/bin/Debug/netcoreapp2.0/DataLayer.dll
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/bin/Debug/netcoreapp2.0/DataLayer.pdb
-/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.csprojResolveAssemblyReference.cache
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.csproj.CoreCompileInputs.cache
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.AssemblyInfoInputs.cache
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.AssemblyInfo.cs
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.dll
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.pdb
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.csprojResolveAssemblyReference.cache

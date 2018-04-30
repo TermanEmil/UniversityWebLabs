@@ -27,15 +27,16 @@
 
 <!-- Img display template -->
 <template id="grid-image-template">
-    <div class="grid-img col-md-2 col-sm-3 col-xs-12">
-        <image class="grid-image" src="/imgs/loadingImg.png"></image>
+    <div class="grid-element col-md-2 col-sm-3 col-xs-12">
+        <image class="grid-image"></image>
         <div id="likes">
-            <image class="thumb-up-img" src="/imgs/thumb-up.png"></image>
+            <image class="thumb-up-img" src="/imgs/thumb-up.png" onclick="imgLike(this);"></image>
             <p class="likes-count">...</p>
         </div>
     </div>
 </template>
 
+<!-- Img container -->
 <div id="grid-images" class="row"> 
 </div>
 
@@ -47,13 +48,22 @@
 @section Scripts {
     <environment include="Development">
         <script src="~/js/LoadImgs.js" asp-append-version="true"></script>
+        <script src="~/js/ContentReact.js" asp-append-version="true"></script>
     </environment>
 
     <environment exclude="Development">
         <script src="~/js/LoadImgs.min.js" asp-append-version="true"></script>
+        <script src="~/js/ContentReact.min.js" asp-append-version="true"></script>
     </environment>
 
     <script>
+        var isAuthenticated = false;
+    
+        @if(User.Identity.IsAuthenticated) 
+        {
+            @: isAuthenticated = true;
+        }
+    
         initPhotoWall();
         loadImages(deltaImgsToLoad);
     </script>

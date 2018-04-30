@@ -85,10 +85,12 @@ namespace Presentation.Controllers
                         user);
 
                     if (err != null)
+                    {
                         ViewData["UploadImgError"] = err;
+                        return View("Index");
+                    }
                 }
             }
-
             return RedirectToAction("Index");
         }
 

@@ -58,26 +58,26 @@
 </div>
 
 @section Scripts {
-<environment include="Development">
-    <script src="~/js/SnapshotCtrl.js" asp-append-version="true"></script>
-</environment>
+    <environment include="Development">
+        <script src="~/js/SnapshotCtrl.js" asp-append-version="true"></script>
+    </environment>
 
-<environment exclude="Development">
-    <script src="~/js/SnapshotCtrl.min.js" asp-append-version="true"></script>
-</environment>
+    <environment exclude="Development">
+        <script src="~/js/SnapshotCtrl.min.js" asp-append-version="true"></script>
+    </environment>
 
 
-<script>
-    function loadSideImgs() {
-        var parent = document.getElementById("side-zone");
-        @if (Model != null) {
-            foreach (var img in Model) {
-                @: createSideImg('@Html.Raw(img.ImgBase64)', parent);
+    <script>
+        function loadSideImgs() {
+            var parent = document.getElementById("side-zone");
+            @if (Model != null) {
+                foreach (var img in Model) {
+                    @: createSideImg('@Html.Raw(img.ImgBase64)', parent);
+                }
             }
         }
-    }
-    
-    initWebCam();
-    loadSideImgs();
-</script>
+        
+        initWebCam();
+        loadSideImgs();
+    </script>
 }

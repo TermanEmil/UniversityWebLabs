@@ -30,8 +30,10 @@ function loadNewImg(imgNb) {
                 var img = imgTemplate.content.cloneNode(true);
                 img.querySelector(".grid-image").src = result.imgBase64;
                 img.querySelector(".likes-count").innerHTML = result.likes;
-                imgHolder.appendChild(img);
+                img.querySelector(".grid-element").id = result.imgId;
+                img.id = result.imgId;
 
+                imgHolder.appendChild(img);
                 loadedImgsIds.push(result.imgId);
             } else {
                 imgsHolder.removeChild(imgHolder);

@@ -3,9 +3,11 @@ using System.Linq;
 using DataLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Presentation.Models;
 using Presentation.Models.PhotoWallViewModels;
 
 namespace Presentation.Controllers
@@ -48,18 +50,20 @@ namespace Presentation.Controllers
         public JsonResult GetNewImg([FromBody] GridPhotosViewModel model)
         {
             var querry = _context.ImgUploads
-                                 .Where(img => !model.DisplayedImgIds.Contains(img.Id))
-                                 .OrderByDescending(x => x.Likes);
+                                 .Where(img => !model.DisplayedImgIds.Contains(img.Id));
 
             if (querry.Count() <= model.RequiredImg)
                 return Json(new
                 {
                     success = false,
                     imgNb = model.RequiredImg,
+
                 });
             
             var rsImg = querry.Skip(model.RequiredImg).First();
             int commentsCount = _context.Comments.Count(c => c.ContentId == rsImg.Id);
+
+            var imgLikes = _context.Likes.Count(l => l.ContentId == rsImg.Id);
 
             return Json(new
             {
@@ -67,9 +71,17 @@ namespace Presentation.Controllers
                 imgNb = model.RequiredImg,
                 imgId = rsImg.Id,
                 imgBase64 = rsImg.RawImgToBase64(),
-                likes = rsImg.Likes,
+                likes = imgLikes,
                 comments = commentsCount
             });
+        }
+
+        [Route("LikeImg")]
+        [Authorize]
+        public IActionResult LikeImg([FromBody] LikeContentModel model)
+        {
+            _logger.LogInformation("here: " + model.ContentId);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -54,6 +54,7 @@ namespace Presentation.Migrations
                     Id = table.Column<string>(nullable: false),
                     Content = table.Column<string>(maxLength: 256, nullable: true),
                     ContentId = table.Column<string>(nullable: true),
+                    ContentType = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -66,13 +67,26 @@ namespace Presentation.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Likes = table.Column<int>(nullable: false),
                     RawImg = table.Column<byte[]>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ImgUploads", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Likes",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ContentId = table.Column<string>(nullable: true),
+                    ContentType = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Likes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,6 +255,9 @@ namespace Presentation.Migrations
 
             migrationBuilder.DropTable(
                 name: "ImgUploads");
+
+            migrationBuilder.DropTable(
+                name: "Likes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

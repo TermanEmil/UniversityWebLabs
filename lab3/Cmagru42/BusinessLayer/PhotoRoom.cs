@@ -18,7 +18,7 @@ namespace BusinessLayer
 
         public static readonly IList<string> imageExtensions = new List<string>
         {
-            ".JPG", ".JPE", ".BMP", ".PNG"
+            ".JPG", ".JPE", ".BMP", ".PNG", ".JPEG"
         };
 
 
@@ -50,7 +50,7 @@ namespace BusinessLayer
         {
             imgName = imgName.ToUpper();
             if (!imageExtensions.Contains(Path.GetExtension(imgName)))
-                return "Not an image";
+                return "Not a supported format";
             
             await UplodImgAsync(imgBytes, user);
             return null;

@@ -8,8 +8,6 @@ namespace DataLayer
         public string Id { get; set; }
         public string UserId { get; set; }
         public byte[] RawImg { get; set; }
-        public int Likes { get; set; }
-
 
         public string RawImgToBase64()
         {
