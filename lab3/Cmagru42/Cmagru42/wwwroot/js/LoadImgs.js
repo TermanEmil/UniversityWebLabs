@@ -4,49 +4,45 @@ var imgsHolder;
 var deltaImgsToLoad = 5;
 var moreImgsBtn;
 var loadingImgsMsgP;
-var requestStatuses = {};
 
-function loadNewImg(imgNb) {
+function loadNewImgs(requiredImgs) {
     var data = {
         PhotosIds: loadedImgsIds,
-        RequiredImg: imgNb
+        RequiredImgs: requiredImgs
     };
 
-    var imgHolder = document.createElement('div');
-    imgHolder.id = "display-img-" + imgNb;
-    imgsHolder.appendChild(imgHolder);
+    var requestHolder = document.createElement('div');
+    imgsHolder.appendChild(requestHolder);
 
     $.ajax({
         type: 'POST',
-        url: '/PhotoWall/GetNewImg',
+        url: '/PhotoWall/GetNewImgs',
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify(data),
 
         success: function(result) {
-            imgHolder = document.getElementById("display-img-" + result.imgNb);
-
             if (result.success) {
-                var img = imgTemplate.content.cloneNode(true);
-                img.querySelector(".grid-image").src = result.imgBase64;
-                img.querySelector(".likes-count").innerHTML = result.likes;
-                img.querySelector(".grid-element").id = result.imgId;
-                img.id = result.imgId;
+                for (var i = 0; i < result.imgs.length; i++) {
+                    var responseImg = result.imgs[i];
+                    var img = imgTemplate.content.cloneNode(true);
 
-                imgHolder.appendChild(img);
-                loadedImgsIds.push(result.imgId);
+                    img.querySelector(".grid-image").src = responseImg.imgBase64;
+                    img.querySelector(".likes-count").innerHTML = responseImg.likes;
+                    img.querySelector(".grid-element").id = responseImg.imgId;
+                    img.id = responseImg.imgId;
+
+                    requestHolder.appendChild(img);
+                    loadedImgsIds.push(responseImg.imgId);
+                }
             } else {
-                imgsHolder.removeChild(imgHolder);
+                imgsHolder.removeChild(requestHolder);
             }
 
-            requestStatuses[result.imgNb] = true;
-            if (loadImgsRequestsFinished())
-                onLoadImgsEnd();
+            onLoadImgsEnd();
         },
         error: function(xhr, textStatus, error) {
-            requestStatuses[result.imgNb] = true;
-            if (loadImgsRequestsFinished())
-                onLoadImgsEnd();
+            onLoadImgsEnd();
         }
     });
 }
@@ -63,19 +59,13 @@ function loadImages(n)
 {
     var len = loadedImgsIds.length;
 
-    onLoadImgsStart();
+    var imgNbs = [];
     for (var i = len; i < n + len; i++) {
-        requestStatuses[i] = false;
-        loadNewImg(i);
+        imgNbs.push(i);
     }
-}
 
-function loadImgsRequestsFinished()
-{
-    for (var i = 0; i < requestStatuses.length; i++)
-        if (requestStatuses[i] == false)
-            return false;
-    return true;
+    onLoadImgsStart();
+    loadNewImgs(imgNbs);
 }
 
 function onLoadImgsStart()

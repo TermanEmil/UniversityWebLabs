@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataLayer
 {
@@ -8,6 +9,9 @@ namespace DataLayer
         public string Id { get; set; }
         public string UserId { get; set; }
         public byte[] RawImg { get; set; }
+
+        [DataType(DataType.DateTime)]
+        public DateTime UploadTime { get; set; }
 
         public string RawImgToBase64()
         {

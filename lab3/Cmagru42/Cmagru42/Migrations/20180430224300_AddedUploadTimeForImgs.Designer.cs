@@ -12,9 +12,10 @@ using System;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(CmagruDBContext))]
-    partial class CmagruDBContextModelSnapshot : ModelSnapshot
+    [Migration("20180430224300_AddedUploadTimeForImgs")]
+    partial class AddedUploadTimeForImgs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

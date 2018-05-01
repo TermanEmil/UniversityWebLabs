@@ -61,7 +61,8 @@ namespace BusinessLayer
             var imgUpload = new ImgUpload()
             {
                 RawImg = imgBytes,
-                UserId = user.Id
+                UserId = user.Id,
+                UploadTime = DateTime.Now
             };
 
             var result = await _context.ImgUploads.AddAsync(imgUpload);

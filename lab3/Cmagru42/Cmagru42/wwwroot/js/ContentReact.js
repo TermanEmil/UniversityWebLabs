@@ -9,6 +9,7 @@
         ContentId: gridEl.id,
     }
 
+    console.log("Liking");
     $.ajax({
         type: "POST",
         url: "/PhotoWall/LikeImg",
@@ -17,7 +18,11 @@
         data: JSON.stringify(data),
 
         success: function(result) {
-            
+            if (result.success) {
+                gridEl.querySelector(".likes-count").innerHTML = result.currentLikes;
+            } else {
+                alert("Could not like...");
+            }
         },
         error: function(xhr, textStatus, error) {
         }
