@@ -9,7 +9,10 @@
         ContentId: gridEl.id,
     }
 
-    console.log("Liking");
+    if (element.disabled)
+        return;
+
+    element.disabled = true;
     $.ajax({
         type: "POST",
         url: "/PhotoWall/LikeImg",
@@ -23,8 +26,11 @@
             } else {
                 alert("Could not like...");
             }
+
+            element.disabled = false;
         },
         error: function(xhr, textStatus, error) {
+            element.disabled = false;
         }
 
     });
