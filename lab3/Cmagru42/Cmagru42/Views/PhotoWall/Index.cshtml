@@ -12,15 +12,13 @@
         background-color: black;
     }
 
-    .thumb-up-img {
+    .under-img-ico {
         width:  15px;
         height: 15px;
-        display: inline;
     }
 
-    .likes-count {
+    .inline {
         display: inline;
-        white-space:nowrap;
     }
 </style>
 }
@@ -29,10 +27,20 @@
 <template id="grid-image-template">
     <div class="grid-element col-md-2 col-sm-3 col-xs-12">
         <image class="grid-image"></image>
-        <div id="likes">
-            <image class="thumb-up-img" src="/imgs/thumb-up.png" onclick="imgLike(this);" disabled="true"></image>
-            <p class="likes-count">...</p>
-        </div>
+        <table id="under-img" style="width:95%">
+            <tr>
+                <th>
+                    <image class="under-img-ico" src="/imgs/thumb-up.png" onclick="imgLike(this);"></image>
+                    <p class="inline likes-count">...</p>
+                </th>
+                <th>
+                    <div align="right">
+                        <p class="inline comments-count">...</p>
+                        <image class="under-img-ico" src="/imgs/comment-icon.png"></image>    
+                    </div>
+                </th>
+            </tr>
+        </table>
     </div>
 </template>
 

@@ -29,6 +29,7 @@ function loadNewImgs(requiredImgs) {
 
                     img.querySelector(".grid-image").src = responseImg.imgBase64;
                     img.querySelector(".likes-count").innerHTML = responseImg.likes;
+                    img.querySelector(".comments-count").innerHTML = responseImg.comments;
                     img.querySelector(".grid-element").id = responseImg.imgId;
                     img.id = responseImg.imgId;
 

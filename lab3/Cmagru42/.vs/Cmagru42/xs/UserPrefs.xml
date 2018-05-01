@@ -1,9 +1,10 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/wwwroot/js/ContentReact.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/wwwroot/js/LoadImgs.js">
     <Files>
-      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="40" Column="27" />
-      <File FileName="Cmagru42/Views/PhotoWall/Index.cshtml" Line="34" Column="34" />
-      <File FileName="Cmagru42/wwwroot/js/ContentReact.js" Line="11" Column="5" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="66" Column="79" />
+      <File FileName="Cmagru42/wwwroot/js/ContentReact.js" Line="10" Column="6" />
+      <File FileName="Cmagru42/Views/PhotoWall/Index.cshtml" Line="38" Column="61" />
+      <File FileName="Cmagru42/wwwroot/js/LoadImgs.js" Line="32" Column="81" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
