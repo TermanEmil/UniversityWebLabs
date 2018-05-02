@@ -22,7 +22,7 @@ namespace Presentation.Controllers
         private readonly ILogger _logger;
         private readonly CmagruDBContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly PhotoRoom _photoRoom;
+        private readonly ImgControl _imgCtrl;
 
         public PhotoRoomController(
             ILogger<AccountController> logger,
@@ -32,7 +32,7 @@ namespace Presentation.Controllers
             _logger = logger;
             _context = context;
             _userManager = userManager;
-            _photoRoom = new PhotoRoom(_logger, _context, _userManager);
+            _imgCtrl = new ImgControl(_logger, _context, _userManager);
         }
 
         [Route("Index"), Route("")]
@@ -47,7 +47,7 @@ namespace Presentation.Controllers
         public async Task<IActionResult> UploadImgRaw([FromBody] ImgUploadRawViewModel data)
         {
             var user = await GetCurrentUserAsync();
-            await _photoRoom.UploadImgFromRawStrAsync(data.RawImg, user);
+            await _imgCtrl.UploadImgFromRawStrAsync(data.RawImg, user);
             //return RedirectToAction("Index");
             return Json(new
             {
@@ -79,7 +79,7 @@ namespace Presentation.Controllers
                 using (var memoryStream = new MemoryStream())
                 {
                     await file.CopyToAsync(memoryStream);
-                    var err = await _photoRoom.UploadImgFromPathAsync(
+                    var err = await _imgCtrl.UploadImgFromPathAsync(
                         file.FileName,
                         memoryStream.ToArray(),
                         user);

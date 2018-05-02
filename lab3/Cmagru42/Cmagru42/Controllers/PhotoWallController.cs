@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer;
 using DataLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
@@ -20,6 +21,7 @@ namespace Presentation.Controllers
         private readonly ILogger _logger;
         private readonly CmagruDBContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ImgControl _imgCtrl;
 
         public PhotoWallController(
             ILogger<AccountController> logger,
@@ -29,6 +31,7 @@ namespace Presentation.Controllers
             _logger = logger;
             _context = context;
             _userManager = userManager;
+            _imgCtrl = new ImgControl(logger, context, userManager);
         }
 
         [Route(""), Route("Index")]
@@ -41,24 +44,13 @@ namespace Presentation.Controllers
         [Route("GetNewImgs")]
         public JsonResult GetNewImgs([FromBody] GridPhotosViewModel model)
         {
-            var imgOverlayer = _context.Users.FirstOrDefault(x => x.UserName == "ImgOverlayer");
-            var imgOverlayerId = imgOverlayer?.Id;
-
-            var querry = _context.ImgUploads
-                                 .Where(img =>
-                                        !model.DisplayedImgIds.Contains(img.Id) &&
-                                        img.UserId != imgOverlayerId);
-
-            if (querry.Count() <= model.RequiredImgs[0])
+            var rsImgs = _imgCtrl.GetNewImgs(model.DisplayedImgIds, model.RequiredImgs);
+            if (rsImgs == null)
                 return Json(new
                 {
                     success = false
                 });
-            
-            var rsImgs = querry.OrderByDescending(x => x.UploadTime)
-                               .Skip(model.RequiredImgs[0])
-                               .Take(model.RequiredImgs.Count);
-            
+
             var imgResponses = rsImgs.Select(img => new
             {
                 imgId = img.Id,
@@ -87,28 +79,8 @@ namespace Presentation.Controllers
                 });
             }
 
-            var prevLike = _context.Likes.FirstOrDefault(x =>
-                                                         x.UserId == user.Id &&
-                                                         x.ContentId == model.ContentId);
+            var likesCount = await _imgCtrl.LikeImg(user, model.ContentId);
 
-            if (prevLike == null)
-            {
-                var like = new Like()
-                {
-                    UserId = user.Id,
-                    ContentId = model.ContentId,
-                    ContentType = EReactionContentType.Img
-                };
-                await _context.Likes.AddAsync(like);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-                _context.Likes.Remove(prevLike);
-                await _context.SaveChangesAsync();
-            }
-
-            var likesCount = _context.Likes.Count(x => x.ContentId == model.ContentId);
             return Json(new
             {
                 success = true,
@@ -129,17 +101,7 @@ namespace Presentation.Controllers
                 });
 
             var user = await _userManager.GetUserAsync(User);
-            var comment = new Comment()
-            {
-                UserId = user.Id,
-                ContentId = model.ImgId,
-                PostTime = DateTime.Now,
-                ContentType = EReactionContentType.Img,
-                Content = model.Content
-            };
-
-            _context.Comments.Add(comment);
-            await _context.SaveChangesAsync();
+            await _imgCtrl.PostComment(user, model.ImgId, model.Content);
 
             return Json(new
             {
@@ -159,7 +121,7 @@ namespace Presentation.Controllers
                                        content = c.Content,
                                        user = _context.Users.FirstOrDefault(u => u.Id == c.UserId).UserName,
                                        time = c.PostTime
-                                    });
+                                   });
             return Json(new
             {
                 success = true,
@@ -168,14 +130,71 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("GetImgOwnerPermissions")]
-        public JsonResult GetImgOwnerPermissions(string imgId)
+        [Route("GetImgOwnerData/{imgId}")]
+        public async Task<JsonResult> GetImgOwnerData([FromRoute] string imgId)
         {
-            _logger.LogInformation("ImgId: " + imgId);
+            var _permissions = new List<string>();
+
+            if (!User.Identity.IsAuthenticated)
+                return Json(new
+                {
+                    success = true,
+                    permissions = _permissions
+                });
+
+            var user = await _userManager.GetUserAsync(User);
+            var img = _context.ImgUploads.FirstOrDefault(x => x.Id == imgId);
+            if (img == null)
+                return Json(new
+                {
+                    success = false,
+                    error = "No such img"
+                });
+
+            if (img.UserId == user.Id)
+                _permissions.Add("Write");
+
             return Json(new
             {
-                success = true
+                success = true,
+                permissions = _permissions,
+                owner = _context.Users.FirstOrDefault(x => x.Id == img.UserId)?.UserName
             });
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("RemoveImg/{imgId}")]
+        public async Task<JsonResult> RemoveImg([FromRoute] string imgId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            try
+            {
+                await _imgCtrl.RemoveImg(user, imgId);
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    success = false,
+                    error = e.Message
+                });
+            }
+
+            return Json(new
+            {
+                success = true,
+                redirUrl = GetAbsPathOf(Url.Action("Index"))
+            });
+        }
+
+        private string GetAbsPathOf(string localPath)
+        {
+            var routeUrl = localPath;
+            var absUrl = string.Format("{0}://{1}{2}", Request.Scheme, Request.Host, routeUrl);
+            var uri = new Uri(absUrl, UriKind.Absolute);
+            return uri.ToString();
         }
     }
 }

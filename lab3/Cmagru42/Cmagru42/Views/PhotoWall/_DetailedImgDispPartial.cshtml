@@ -1,17 +1,15 @@
-﻿<div id="detailed-img-viewer" class="row" hidden="true">
-    <input id="target-img-id" value="" hidden="true">
-    
+﻿<div id="detailed-img-viewer" class="row" hidden="true">    
     <div class="background-transparent on-top"></div>
-
+    <input id="target-img-id" hidden="true">
     <image class="x-close-btn" src="/imgs/x-button.png" onclick="hideDetailedImgViewer();"></image>
 
     <image id="main-img" class="col-md-12"></image>
 
     <div class="modal-content col-md-12">
         <br />
-
-        <button hidden="true" onclick="removeImg();">Remove img</button>
-
+        <b id="img-owner-username"></b>
+        <button id="remove-img" type="submit" onclick="removeCurrentImg();" hidden="true">Remove img</button>
+        
         <hr />
         <div id="comments-container" >
         </div>
