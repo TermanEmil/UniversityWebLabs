@@ -5,63 +5,106 @@
 }
 
 @section Styles {
-<style>
-    .grid-image {
-        width: 150px;
-        height: 150px;
-        background-color: black;
-    }
+    <style>
+        .grid-image {
+            width: 150px;
+            height: 150px;
+            background-color: black;
+        }
 
-    .under-img-ico {
-        width:  15px;
-        height: 15px;
-    }
+        .under-img-ico {
+            width:  15px;
+            height: 15px;
+        }
 
-    .inline {
-        display: inline;
-    }
-</style>
+        .inline {
+            display: inline;
+        }
+
+        #detailed-img-viewer {
+        }
+
+        .on-top {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0%;
+            bottom: 0%;
+        }
+        
+        .background-transparent {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #detailed-img-viewer {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            border: 1px solid #888;
+            top: 20%;
+            left: calc(20% + 330px);
+            width: calc(100% - 20% - 330px);
+        }
+
+        #main-img {
+            background-color: black;
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            left: 20%;
+            position: fixed;
+        }
+
+        .x-close-btn {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            top: 10%;
+            left: 10%;
+        }
+
+        .time-field {
+            color: grey;
+            font-size: 6pt;
+        }
+    </style>
 }
 
-<!-- Img display template -->
-<template id="grid-image-template">
-    <div class="grid-element col-md-2 col-sm-3 col-xs-12">
-        <image class="grid-image"></image>
-        <table id="under-img" style="width:95%">
-            <tr>
-                <th>
-                    <image class="under-img-ico" src="/imgs/thumb-up.png" onclick="imgLike(this);"></image>
-                    <p class="inline likes-count">...</p>
-                </th>
-                <th>
-                    <div align="right">
-                        <p class="inline comments-count">...</p>
-                        <image class="under-img-ico" src="/imgs/comment-icon.png"></image>    
-                    </div>
-                </th>
-            </tr>
-        </table>
-    </div>
-</template>
+<!-- Templates -->
+@await Html.PartialAsync("_ImgDisplayTemplatePartial")
 
 <!-- Img container -->
 <div id="grid-images" class="row"> 
 </div>
 
+<!-- Load more Btn with loading text -->
 <center>
     <button id="more-imgs-btn" onclick="loadImages(deltaImgsToLoad);">More!</button>
     <p id="loading-img-msg"></p>
 </center>
 
+@await Html.PartialAsync("_DetailedImgDispPartial")
+
 @section Scripts {
     <environment include="Development">
         <script src="~/js/LoadImgs.js" asp-append-version="true"></script>
         <script src="~/js/ContentReact.js" asp-append-version="true"></script>
+        <script src="~/js/DetailedImgViewer.js" asp-append-version="true"></script>
+        <script src="~/js/Commenting.js" asp-append-version="true"></script>
     </environment>
 
     <environment exclude="Development">
         <script src="~/js/LoadImgs.min.js" asp-append-version="true"></script>
         <script src="~/js/ContentReact.min.js" asp-append-version="true"></script>
+        <script src="~/js/DetailedImgViewer.min.js" asp-append-version="true"></script>
+        <script src="~/js/Commenting.min.js" asp-append-version="true"></script>
     </environment>
 
     <script>

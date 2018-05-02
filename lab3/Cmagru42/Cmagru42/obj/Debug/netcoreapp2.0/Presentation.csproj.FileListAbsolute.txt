@@ -1,7 +1,4 @@
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.csprojResolveAssemblyReference.cache
-/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.csproj.CoreCompileInputs.cache
-/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.AssemblyInfoInputs.cache
-/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.AssemblyInfo.cs
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Presentation.deps.json
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Presentation.runtimeconfig.json
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/Presentation.runtimeconfig.dev.json
@@ -11,5 +8,8 @@
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/DataLayer.dll
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/BusinessLayer.pdb
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/bin/Debug/netcoreapp2.0/DataLayer.pdb
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.csproj.CoreCompileInputs.cache
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.AssemblyInfoInputs.cache
+/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.AssemblyInfo.cs
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.dll
 /Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/Debug/netcoreapp2.0/Presentation.pdb

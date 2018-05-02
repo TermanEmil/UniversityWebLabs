@@ -47,5 +47,40 @@
       "renameLocals": true
     },
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/DetailedImgViewer.min.js",
+    "inputFiles": [
+      "wwwroot/js/DetailedImgViewer.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+],
+  {
+    "outputFileName": "wwwroot/js/DetailedImgViewer.min.js",
+    "inputFiles": [
+      "wwwroot/js/DetailedImgViewer.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+],
+  {
+    "outputFileName": "wwwroot/js/DetailedImgViewer.min.js",
+    "inputFiles": [
+      "wwwroot/js/DetailedImgViewer.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
   }
 ]

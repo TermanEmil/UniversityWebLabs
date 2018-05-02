@@ -1,0 +1,17 @@
+﻿<template id="grid-image-template">
+    <div class="grid-element col-md-2 col-sm-3 col-xs-12">
+        <image class="grid-image" onclick="viewInDetail(this);"></image>
+        <table id="under-img">
+            <tr>
+                <th>
+                    <image class="under-img-ico" src="/imgs/thumb-up.png" onclick="imgLike(this);"></image>
+                    <p class="inline likes-count">...</p>
+                </th>
+                <th>
+                    <image class="under-img-ico" src="/imgs/comment-icon.png"></image>    
+                    <p class="inline comments-count">...</p>
+                </th>
+            </tr>
+        </table>
+    </div>
+</template>

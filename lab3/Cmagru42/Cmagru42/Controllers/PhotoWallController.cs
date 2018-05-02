@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataLayer;
@@ -44,9 +45,9 @@ namespace Presentation.Controllers
             var imgOverlayerId = imgOverlayer?.Id;
 
             var querry = _context.ImgUploads
-                                 .Where(
-                                     img => !model.DisplayedImgIds.Contains(img.Id) &&
-                                     img.UserId != imgOverlayerId);
+                                 .Where(img =>
+                                        !model.DisplayedImgIds.Contains(img.Id) &&
+                                        img.UserId != imgOverlayerId);
 
             if (querry.Count() <= model.RequiredImgs[0])
                 return Json(new
@@ -112,6 +113,68 @@ namespace Presentation.Controllers
             {
                 success = true,
                 currentLikes = likesCount
+            });
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("PostComment")]
+        public async Task<JsonResult> PostComment([FromBody] PostCommentViewModel model)
+        {
+            if (model.Content.Length <= 1)
+                return Json(new
+                {
+                    success = false,
+                    error = "Comment too short"
+                });
+
+            var user = await _userManager.GetUserAsync(User);
+            var comment = new Comment()
+            {
+                UserId = user.Id,
+                ContentId = model.ImgId,
+                PostTime = DateTime.Now,
+                ContentType = EReactionContentType.Img,
+                Content = model.Content
+            };
+
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return Json(new
+            {
+                success = true
+            });
+        }
+
+        [HttpPost]
+        [Route("GetComments")]
+        public JsonResult GetComments([FromBody] LoadCommentsModelVIew model)
+        {
+            var comments = _context.Comments
+                                   .Where(c => c.ContentId == model.ImgId)
+                                   .OrderBy(c => c.PostTime)
+                                   .Select(c => new
+                                   {
+                                       content = c.Content,
+                                       user = _context.Users.FirstOrDefault(u => u.Id == c.UserId).UserName,
+                                       time = c.PostTime
+                                    });
+            return Json(new
+            {
+                success = true,
+                allComments = comments
+            });
+        }
+
+        [HttpPost]
+        [Route("GetImgOwnerPermissions")]
+        public JsonResult GetImgOwnerPermissions(string imgId)
+        {
+            _logger.LogInformation("ImgId: " + imgId);
+            return Json(new
+            {
+                success = true
             });
         }
     }

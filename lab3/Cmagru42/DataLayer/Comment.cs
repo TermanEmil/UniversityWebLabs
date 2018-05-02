@@ -10,6 +10,9 @@ namespace DataLayer
         public string ContentId { get; set; }
         public EReactionContentType ContentType { get; set; }
 
+        [DataType(DataType.DateTime)]
+        public DateTime PostTime { get; set; }
+
         [StringLength(
             256,
             ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.",

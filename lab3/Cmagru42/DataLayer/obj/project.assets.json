@@ -4029,13 +4029,13 @@
       "projectName": "DataLayer",
       "projectPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/DataLayer.csproj",
       "packagesPath": "/Users/unicornslayer/.nuget/packages/",
-      "outputPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/obj",
+      "outputPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/unicornslayer/.config/NuGet/NuGet.Config"
+        "/Users/unicornslayer/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -4057,27 +4057,27 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "2.0",
-            "autoReferenced": true
-          },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "2.0.2"
-          },
-          "Microsoft.EntityFrameworkCore.Sqlite": {
-            "target": "Package",
-            "version": "2.0.2"
-          },
           "Microsoft.AspNetCore.Identity": {
             "target": "Package",
-            "version": "2.0.2"
+            "version": "[2.0.2, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
-            "version": "2.0.2"
+            "version": "[2.0.2, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[2.0.2, )"
+          },
+          "Microsoft.EntityFrameworkCore.Sqlite": {
+            "target": "Package",
+            "version": "[2.0.2, )"
+          },
+          "Microsoft.NETCore.App": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
           }
         },
         "imports": [

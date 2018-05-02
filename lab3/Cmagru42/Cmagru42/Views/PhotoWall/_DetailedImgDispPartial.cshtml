@@ -1,0 +1,33 @@
+﻿<div id="detailed-img-viewer" class="row" hidden="true">
+    <input id="target-img-id" value="" hidden="true">
+    
+    <div class="background-transparent on-top"></div>
+
+    <image class="x-close-btn" src="/imgs/x-button.png" onclick="hideDetailedImgViewer();"></image>
+
+    <image id="main-img" class="col-md-12"></image>
+
+    <div class="modal-content col-md-12">
+        <br />
+
+        <button hidden="true" onclick="removeImg();">Remove img</button>
+
+        <hr />
+        <div id="comments-container" >
+        </div>
+
+        <div id="add-comment">
+            <input id="add-comment-content" type="text" name="Content"><br>
+            <input type="submit" value="Comment" onclick="addComment();">
+            <p id="add-comment-status"></p>
+        </div>
+    </div>
+</div>
+
+<template id="img-comment">
+    <div class="comment">
+        <b class="user-name-field inline">...</b>
+        <div class="comment-content inline">...</div>
+        <div class="time-field">...</div>
+    </div>
+</template>
