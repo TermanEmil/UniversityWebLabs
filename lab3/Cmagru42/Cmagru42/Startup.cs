@@ -3,6 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer;
+using BusinessLayer.Emailing;
 using DataLayer.AppUser;
 using DataLayer.DB;
 using Microsoft.AspNetCore.Builder;
@@ -57,8 +58,9 @@ namespace Presentation
                 options.SlidingExpiration = true;
             });
 
-            // Add application services.
-            //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddSingleton<IEmailConfiguration>(
+                Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
 
             services.AddMvc();
 

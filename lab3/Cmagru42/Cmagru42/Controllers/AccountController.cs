@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using AutoMapper;
+using BusinessLayer.Emailing;
 using DataLayer.AppUser;
 using DataLayer.DB;
 using Microsoft.AspNetCore.Authentication;
@@ -22,25 +24,35 @@ namespace Presentation.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailService _emailService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             CmagruDBContext context,
             ILogger<AccountController> logger,
-            IMapper mapper)
+            IMapper mapper,
+            IEmailService emailService)
         {
             System.Security.Claims.ClaimsPrincipal a = User;
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailService = emailService;
+
         }
 
         [Route("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string ReturnUrl = null)
         {
+            await _emailService.Send(new EmailMessage
+            {
+                ToAddress = "terman.emil@gmail.com",
+                Subject = "Asp.Net email test",
+                Content = "Poti sa stergi"
+            });
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             ViewData["ReturnUrl"] = ReturnUrl;
             return View();
