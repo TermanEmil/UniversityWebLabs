@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
+using System.Threading.Tasks;
 using AutoMapper;
+using BusinessLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
 using Microsoft.AspNetCore.Builder;
@@ -58,6 +61,13 @@ namespace Presentation
             //services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var roleInitializer = new InitRoles(
+                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>(),
+                serviceProvider.GetRequiredService<UserManager<ApplicationUser>>(),
+                Configuration);
+            roleInitializer.InitAppRolesAsync().Wait();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

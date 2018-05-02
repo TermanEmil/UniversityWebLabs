@@ -155,6 +155,11 @@ namespace Presentation.Controllers
             return View(result.Succeeded ? "EmailConfirmed" : "Error");
         }
 
+        private void CreateRoles()
+        {
+            
+        }
+
         #region Helpers
         private async Task<_DesiredLoginUserResult> GetDesiredUser(string emailOrUsername)
         {
