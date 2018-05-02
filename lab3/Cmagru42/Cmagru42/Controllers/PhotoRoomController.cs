@@ -101,14 +101,9 @@ namespace Presentation.Controllers
 
         private IList<OverlayImgViewModel> GetOverlaysImgs()
         {
-            var overlayerDB = _context.Users.FirstOrDefault(
-                x => x.UserName.Equals("ImgOverlayer"));
-
-            if (overlayerDB == null)
-                return null;
-
+            var overlayerId = UserUtils.GetUserRoleId(_context, "ImgOverlayer");
             var imgs = _context.ImgUploads
-                               .Where(x => x.UserId.Equals(overlayerDB.Id))
+                               .Where(x => x.UserId == overlayerId)
                                .Select(x => new OverlayImgViewModel
                                {
                                     ImgBase64 = x.RawImgToBase64()

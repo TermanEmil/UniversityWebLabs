@@ -42,9 +42,13 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [Route("GetNewImgs")]
-        public JsonResult GetNewImgs([FromBody] GridPhotosViewModel model)
+        public async Task<JsonResult> GetNewImgs([FromBody] GridPhotosViewModel model)
         {
-            var rsImgs = _imgCtrl.GetNewImgs(model.DisplayedImgIds, model.RequiredImgs);
+            var rsImgs = _imgCtrl.GetNewImgs(
+                model.DisplayedImgIds,
+                model.RequiredImgs,
+                await _userManager.GetUserAsync(User));
+            
             if (rsImgs == null)
                 return Json(new
                 {
@@ -144,6 +148,7 @@ namespace Presentation.Controllers
 
             var user = await _userManager.GetUserAsync(User);
             var img = _context.ImgUploads.FirstOrDefault(x => x.Id == imgId);
+
             if (img == null)
                 return Json(new
                 {
@@ -151,7 +156,7 @@ namespace Presentation.Controllers
                     error = "No such img"
                 });
 
-            if (img.UserId == user.Id)
+            if (img.UserId == user.Id || UserUtils.GetUserRole(_context, user) == "Admin")
                 _permissions.Add("Write");
 
             return Json(new

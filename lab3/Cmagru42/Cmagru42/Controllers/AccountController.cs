@@ -30,6 +30,7 @@ namespace Presentation.Controllers
             ILogger<AccountController> logger,
             IMapper mapper)
         {
+            System.Security.Claims.ClaimsPrincipal a = User;
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
@@ -151,13 +152,9 @@ namespace Presentation.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{userId}'.");
             }
+
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "EmailConfirmed" : "Error");
-        }
-
-        private void CreateRoles()
-        {
-            
         }
 
         #region Helpers

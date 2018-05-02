@@ -1,10 +1,12 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="BusinessLayer/InitRoles.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BusinessLayer/ImgControl.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="31" Column="27" />
-      <File FileName="Cmagru42/Startup.cs" Line="90" Column="10" />
-      <File FileName="Cmagru42/Program.cs" Line="37" Column="19" />
-      <File FileName="BusinessLayer/InitRoles.cs" Line="37" Column="48" />
+      <File FileName="Cmagru42/Views/PhotoRoom/Index.cshtml" Line="78" Column="10" />
+      <File FileName="Cmagru42/Views/PhotoWall/Index.cshtml" Line="61" Column="20" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="179" Column="41" />
+      <File FileName="BusinessLayer/UserUtils.cs" Line="22" Column="9" />
+      <File FileName="BusinessLayer/InitRoles.cs" Line="27" Column="10" />
+      <File FileName="BusinessLayer/ImgControl.cs" Line="140" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

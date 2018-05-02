@@ -23,8 +23,7 @@ namespace BusinessLayer
             _configuration = configuration;
         }
 
-        public async Task InitAppRolesAsync(
-            )
+        public async Task InitAppRolesAsync()
         {
             foreach (var roleName in roleNames)
             {

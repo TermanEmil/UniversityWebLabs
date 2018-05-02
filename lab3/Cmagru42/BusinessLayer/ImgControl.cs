@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DataLayer;
 using DataLayer.AppUser;
@@ -57,15 +58,25 @@ namespace BusinessLayer
             return null;
         }
 
-        public IEnumerable<ImgUpload> GetNewImgs(IList<string> exceptionImgIds, IList<int> requiredImgs)
+        public IEnumerable<ImgUpload> GetNewImgs(
+            IList<string> exceptionImgIds,
+            IList<int> requiredImgs,
+            ApplicationUser loggedInUser)
         {
-            var imgOverlayer = _context.Users.FirstOrDefault(x => x.UserName == "ImgOverlayer");
-            var imgOverlayerId = imgOverlayer?.Id;
+            string overlayerId = UserUtils.GetUserRoleId(_context, "ImgOverlayer");
+            string[] specialRoles =
+            {
+                "ImgOverlayer",
+                "Admin",
+            };
 
+            if (loggedInUser != null && specialRoles.Contains(UserUtils.GetUserRole(_context, loggedInUser)))
+                overlayerId = "It's img overlayer, so show me overlayer imgs too.";
+            
             var querry = _context.ImgUploads
                                  .Where(img =>
                                         !exceptionImgIds.Contains(img.Id) &&
-                                        img.UserId != imgOverlayerId);
+                                        img.UserId != overlayerId);
 
             if (querry.Count() <= requiredImgs[0])
                 return null;
@@ -124,7 +135,7 @@ namespace BusinessLayer
             if (img == null)
                 throw new Exception("No such img");
 
-            if (img.UserId != user.Id)
+            if (img.UserId != user.Id && UserUtils.GetUserRole(_context, user) != "Admin")
                 throw new Exception("Action not permited");
 
             RemoveImg(img);
