@@ -29,12 +29,11 @@
 
             <button type="submit" class="account-submit">Register</button>
         </form>
+        <b>
+            @ViewBag.RegistrationStatus
+        </b>
     </div>
 </div>
-
-<p>
-    @ViewBag.token
-</p>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

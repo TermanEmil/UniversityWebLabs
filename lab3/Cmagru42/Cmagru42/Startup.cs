@@ -37,7 +37,7 @@ namespace Presentation
             
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                //options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedEmail = true;
             })
                     .AddEntityFrameworkStores<CmagruDBContext>()
                     .AddDefaultTokenProviders();

@@ -25,6 +25,7 @@ namespace Presentation.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly CmagruDBContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -40,19 +41,13 @@ namespace Presentation.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
-
+            _context = context;
         }
 
         [Route("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string ReturnUrl = null)
         {
-            await _emailService.Send(new EmailMessage
-            {
-                ToAddress = "terman.emil@gmail.com",
-                Subject = "Asp.Net email test",
-                Content = "Poti sa stergi"
-            });
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             ViewData["ReturnUrl"] = ReturnUrl;
             return View();
@@ -87,7 +82,10 @@ namespace Presentation.Controllers
                 return RedirectToLocal(returnUrl);
             else
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                if (!desiredUser.User.EmailConfirmed)
+                    ModelState.AddModelError("", "Email not confirmed.");
+                else
+                    ModelState.AddModelError("", "Invalid login attempt.");
                 return View(model);   
             }
         }
@@ -124,21 +122,32 @@ namespace Presentation.Controllers
 
                 if (result.Succeeded)
                 {
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    ////var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    //var ctokenLink = Url.Action("ConfirmEmail", "Account", new
-                    //{
-                    //    userid = user.Id,
-                    //    code = code
-                    //}, protocol: HttpContext.Request.Scheme);
-                    //ViewBag.token = ctokenLink;
+                    var confirmCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var ctokenLink = Url.Action("ConfirmEmail", "Account", new
+                    {
+                        userid = user.Id,
+                        code = confirmCode
+                    }, protocol: HttpContext.Request.Scheme);
 
-                    //await _emailSender.SendEmailConfirmationAsync(model.Email, ctokenLink);
-                    //return View(model);
-                    await _signInManager.SignInAsync(user, null);
-                    return this.RedirectToActionCtrl(
-                        nameof(HomeController.Index),
-                        nameof(HomeController));
+                    try
+                    {
+                        await _emailService.Send(new EmailMessage
+                        {
+                            ToAddress = model.Email,
+                            Subject = "[Cmagru][no-reply]Email confirmation",
+                            Content = "Click the link: " + ctokenLink
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        ViewBag.RegistrationStatus = e.Message;
+                    }
+                    finally
+                    {
+                        ViewBag.RegistrationStatus = "Confirmation sent";
+                    }
+
+                    return View(model);
                 }
                 else
                 {
@@ -168,6 +177,8 @@ namespace Presentation.Controllers
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "EmailConfirmed" : "Error");
         }
+
+
 
         #region Helpers
         private async Task<_DesiredLoginUserResult> GetDesiredUser(string emailOrUsername)

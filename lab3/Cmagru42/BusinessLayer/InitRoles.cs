@@ -41,7 +41,8 @@ namespace BusinessLayer
             var newUser = new ApplicationUser()
             {
                 UserName = _configuration[configIndex + ":UserName"],
-                Email = _configuration[configIndex + ":Email"]
+                Email = _configuration[configIndex + ":Email"],
+                EmailConfirmed = true
             };
 
             var user = await _userManager.FindByEmailAsync(newUser.Email);
