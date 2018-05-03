@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using Presentation.Extensions;
 using Presentation.Models.AccountViewModels;
@@ -129,6 +130,7 @@ namespace Presentation.Controllers
                     var ctokenLink = Url.Action("ConfirmEmail", "Account", new
                     {
                         userid = user.Id,
+                        email = "",
                         code = confirmCode
                     }, protocol: HttpContext.Request.Scheme);
 
@@ -162,7 +164,7 @@ namespace Presentation.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        public async Task<IActionResult> ConfirmEmail(string userId, string email, string code)
         {
             if (userId == null || code == null)
             {
@@ -176,52 +178,49 @@ namespace Presentation.Controllers
             }
 
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            return View(result.Succeeded ? "EmailConfirmed" : "Error");
+            if (result.Succeeded)
+            {
+                // Used to modify the current email.
+                if (!string.IsNullOrEmpty(email))
+                {
+                    user.Email = email;
+                    await TryUpdateModelAsync(user);
+                    await _context.SaveChangesAsync();
+                    await _userManager.UpdateAsync(user);
+                }
+                return View("EmailConfirmed");
+            }
+            else
+                return View("Error");
         }
 
         [Route("Settings")]
         public IActionResult Settings()
         {
-            var userId = _userManager.GetUserId(User);
-            var settings = _context.GetUserSettings
-                                   .FirstOrDefault(x => x.UserId == userId);
-
-            var sendNotifs = settings == null ? false : settings.SendEmailNotifs;
-
-            var model = new SettingsViewModel()
-            {
-                SendNotifsOnEmail = sendNotifs
-            };
+            SettingsViewModel model = new SettingsViewModel();
+            LoadSettinsViewModelData(model);
             return View(model);
         }
 
         [HttpPost]
         [Route("SetSettings")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetSettings(SettingsViewModel model)
         {
-            var userId = _userManager.GetUserId(User);
-            var settings = _context.GetUserSettings
-                                   .FirstOrDefault(x => x.UserId == userId);
-            if (settings != null && settings.SendEmailNotifs == model.SendNotifsOnEmail)
-                return View("Settings", model);
-
-            if (settings == null)
+            if (ModelState.IsValid)
             {
-                settings = new UserSettings
-                {
-                    UserId = userId,
-                    SendEmailNotifs = model.SendNotifsOnEmail
-                };
-                _context.GetUserSettings.Add(settings);
-            }
-            else
-            {
-                settings.SendEmailNotifs = model.SendNotifsOnEmail;
-                await TryUpdateModelAsync(settings);
-            }
+                var shouldUpdateDb = 0;
+                var currentUser = await _userManager.GetUserAsync(User);
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Settings");
+                shouldUpdateDb += await TryToModifUserSettings(model, currentUser);
+                shouldUpdateDb += await TryToModifUsernameAsync(model, currentUser);
+                shouldUpdateDb += await TryToModifEmailAsync(model, currentUser);
+
+                if (shouldUpdateDb != 0)
+                    await _context.SaveChangesAsync();
+            }
+            LoadSettinsViewModelData(model);
+            return View("Settings", model);
         }
 
         #region Helpers
@@ -260,6 +259,117 @@ namespace Presentation.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
+        }
+
+        private async Task<int> TryToModifUserSettings(
+            SettingsViewModel model,
+            ApplicationUser currentUser)
+        {
+            var userId = currentUser.Id;
+            var settings = _context.GetUserSettings
+                                   .FirstOrDefault(x => x.UserId == userId);
+
+            if (settings != null && settings.SendEmailNotifs == model.SendNotifsOnEmail)
+                return 0;
+
+            if (settings == null)
+            {
+                settings = new UserSettings
+                {
+                    UserId = userId,
+                    SendEmailNotifs = model.SendNotifsOnEmail
+                };
+                _context.GetUserSettings.Add(settings);
+            }
+            else
+            {
+                settings.SendEmailNotifs = model.SendNotifsOnEmail;
+                await TryUpdateModelAsync(settings);
+            }
+            return 1;
+        }
+
+        private async Task<int> TryToModifUsernameAsync(
+            SettingsViewModel model,
+            ApplicationUser currentUser)
+        {
+            if (string.IsNullOrEmpty(model.NewUserName))
+                return 0;
+
+            var existingUser = await _userManager.FindByNameAsync(model.NewUserName);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("", "An user with the same UserName already exists.");
+                return 0;
+            }
+
+            currentUser.UserName = model.NewUserName;
+            await TryUpdateModelAsync(currentUser);
+            var rs = await _userManager.UpdateAsync(currentUser);
+            if (rs.Succeeded)
+                return 1;
+            else
+            {
+                foreach (var error in rs.Errors)
+                    ModelState.AddModelError("", error.Description);
+                return 0;
+            }
+
+        }
+
+        private async Task<int> TryToModifEmailAsync(
+            SettingsViewModel model,
+            ApplicationUser currentUser)
+        {
+            if (string.IsNullOrEmpty(model.NewEmail))
+                return 0;
+
+            var existingUser = await _userManager.FindByEmailAsync(model.NewEmail);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("", "An user with the same email already exists.");
+                return 0;
+            }
+
+            var confirmCode = await _userManager.GenerateEmailConfirmationTokenAsync(currentUser);
+            var ctokenLink = Url.Action("ConfirmEmail", "Account", new
+            {
+                userid = currentUser.Id,
+                email = model.NewEmail,
+                code = confirmCode
+            }, protocol: HttpContext.Request.Scheme);
+
+            try
+            {
+                await UserUtils.SendEmailConfirm(
+                    _emailService,
+                    model.NewEmail,
+                    ctokenLink);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+            }
+            finally
+            {
+                ViewBag.Status = "Confirmation sent";
+            }
+
+            return 0;
+        }
+
+        private void LoadSettinsViewModelData(SettingsViewModel model)
+        {
+            var userId = _userManager.GetUserId(User);
+            var user = _context.Users.Find(userId);
+            var settings = _context.GetUserSettings
+                                   .FirstOrDefault(x => x.UserId == userId);
+
+            var sendNotifs = settings == null ? false : settings.SendEmailNotifs;
+
+            model.SendNotifsOnEmail = sendNotifs;
+            model.CurrentEmail = user.Email;
+            model.CurrentUserName = user.UserName;
         }
         #endregion
     }

@@ -1,14 +1,17 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="BusinessLayer/Emailing/EmailMessage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Shared/_LoginPartial.cshtml">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="190" Column="13" />
-      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="16" Column="34" />
-      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="36" Column="81" />
-      <File FileName="BusinessLayer/ImgControl.cs" Line="142" Column="13" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="222" Column="69" />
+      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="25" Column="21" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="79" Column="55" />
+      <File FileName="BusinessLayer/ImgControl.cs" Line="180" Column="85" />
       <File FileName="Cmagru42/Controllers/PhotoRoomController.cs" Line="37" Column="84" />
-      <File FileName="BusinessLayer/UserUtils.cs" Line="70" Column="13" />
-      <File FileName="BusinessLayer/Emailing/EmailService.cs" Line="26" Column="57" />
-      <File FileName="BusinessLayer/Emailing/EmailMessage.cs" Line="12" Column="41" />
+      <File FileName="BusinessLayer/UserUtils.cs" Line="43" Column="16" />
+      <File FileName="BusinessLayer/Emailing/EmailService.cs" Line="43" Column="54" />
+      <File FileName="BusinessLayer/Emailing/EmailMessage.cs" Line="12" Column="49" />
+      <File FileName="Cmagru42/Models/AccountViewModels/SettingsViewModel.cs" Line="20" Column="48" />
+      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="19" Column="47" />
+      <File FileName="Cmagru42/Views/Shared/_LoginPartial.cshtml" Line="12" Column="87" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

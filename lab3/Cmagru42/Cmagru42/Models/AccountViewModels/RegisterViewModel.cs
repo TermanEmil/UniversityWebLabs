@@ -6,13 +6,13 @@ namespace Presentation.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
-        [MaxLength(256)]
+        [MaxLength(32)]
         public string UserName { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        [MaxLength(256)]
+        [MaxLength(124)]
         public string Email { get; set; }
 
         [Required]

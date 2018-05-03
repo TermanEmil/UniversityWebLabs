@@ -14,6 +14,7 @@
 
 <div>
     <form asp-controller="Account" asp-action="SetSettings" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div>
             <p class="inline">Send notifications on email: </p>
 
@@ -23,7 +24,31 @@
               <span class="slider round"></span>
             </label>
         </div>
+
+        <hr />
+        
+        <div>
+            <p><b>Current UserName:</b> @Model.CurrentUserName </p>
+            <input asp-for="NewUserName" placeholder="New UserName">
+            <span asp-validation-for="NewUserName" class="text-danger"></span>
+        </div>
+
+        <hr />
+
+        <div>
+            <p><b>Current Email:</b> @Model.CurrentEmail </p>
+            <input asp-for="NewEmail" placeholder="New email">
+            <span asp-validation-for="NewEmail" class="text-danger"></span>
+        </div>
+        
         <button type="submit">Submit</button>
+        <p>
+            @ViewBag.Status
+        </p>
     </form>
     
 </div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

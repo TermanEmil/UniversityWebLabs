@@ -13892,13 +13892,13 @@
       "projectName": "Presentation",
       "projectPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/Presentation.csproj",
       "packagesPath": "/Users/unicornslayer/.nuget/packages/",
-      "outputPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj/",
+      "outputPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/Cmagru42/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/unicornslayer/.nuget/NuGet/NuGet.Config"
+        "/Users/unicornslayer/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -13927,46 +13927,47 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "AutoMapper": {
-            "target": "Package",
-            "version": "[6.2.2, )"
-          },
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-            "target": "Package",
-            "version": "[3.2.0, )"
-          },
-          "BuildBundlerMinifier": {
-            "target": "Package",
-            "version": "[2.6.375, )"
-          },
-          "BundlerMinifier.Core": {
-            "target": "Package",
-            "version": "[2.6.375, )"
-          },
-          "LigerShark.WebOptimizer.Core": {
-            "target": "Package",
-            "version": "[1.0.215, )"
-          },
-          "Microsoft.AspNetCore.All": {
-            "target": "Package",
-            "version": "[2.0.7, )"
-          },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0",
             "autoReferenced": true
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "[2.0.3, )"
+            "version": "2.0.3"
           },
-          "Sendgrid": {
+          "AutoMapper": {
             "target": "Package",
-            "version": "[9.9.0, )"
+            "version": "6.2.2"
+          },
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "3.2.0"
+          },
+          "BuildBundlerMinifier": {
+            "target": "Package",
+            "version": "2.6.375"
+          },
+          "LigerShark.WebOptimizer.Core": {
+            "target": "Package",
+            "version": "1.0.215"
+          },
+          "BundlerMinifier.Core": {
+            "target": "Package",
+            "version": "2.6.375"
           },
           "bootstrap": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "4.1.0"
+          },
+          "Sendgrid": {
+            "target": "Package",
+            "version": "9.9.0"
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.7"
           }
         },
         "imports": [
