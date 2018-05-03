@@ -163,11 +163,30 @@ namespace BusinessLayer
             if (img == null)
                 throw new Exception("No such img");
 
-            if (img.UserId != user.Id && UserUtils.GetUserRole(_context, user) != "Admin")
+            var role = UserUtils.GetUserRole(_context, user);
+            if (img.UserId != user.Id && role != "Admin")
                 throw new Exception("Action not permited");
 
             RemoveImg(img);
             await _context.SaveChangesAsync();
+
+            if (role == "Admin")
+            {
+                if (img.UserId == user.Id)
+                    return;
+                var subject = "[Cmagru][ImgRemoved][no-reply] Img removed by admin";
+                var body = "The <b>Admin</b> has just removed one of your images.";
+                if (user.EmailConfirmed)
+                    body += "<br /> You can contact the admin on the following email: " + user.Email;
+
+                UserUtils.SendEmailNotif(
+                    _context,
+                    _emailService,
+                    img.UserId,
+                    subject,
+                    body
+                );
+            }
         }
 
         private async Task UplodImgAsync(byte[] imgBytes, ApplicationUser user)
