@@ -125,7 +125,9 @@ namespace Presentation.Controllers
                                    .Select(c => new
                                    {
                                        content = c.Content,
-                                       user = _context.Users.FirstOrDefault(u => u.Id == c.UserId).UserName,
+                                        user = _context.Users
+                                                       .FirstOrDefault(x => x.Id == c.UserId)
+                                                       .UserName ?? "DeletedUser",
                                        time = c.PostTime
                                    });
             return Json(new
