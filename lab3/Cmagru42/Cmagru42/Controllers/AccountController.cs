@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using System.Threading.Tasks;
 using AutoMapper;
+using BusinessLayer;
 using BusinessLayer.Emailing;
 using DataLayer.AppUser;
 using DataLayer.DB;
@@ -131,12 +132,10 @@ namespace Presentation.Controllers
 
                     try
                     {
-                        await _emailService.Send(new EmailMessage
-                        {
-                            ToAddress = model.Email,
-                            Subject = "[Cmagru][no-reply]Email confirmation",
-                            Content = "Click the link: " + ctokenLink
-                        });
+                        await UserUtils.SendEmailConfirm(
+                            _emailService,
+                            user.Email,
+                            ctokenLink);
                     }
                     catch (Exception e)
                     {
@@ -178,7 +177,11 @@ namespace Presentation.Controllers
             return View(result.Succeeded ? "EmailConfirmed" : "Error");
         }
 
-
+        [Route("Settings")]
+        public IActionResult Settings()
+        {
+            return View();
+        }
 
         #region Helpers
         private async Task<_DesiredLoginUserResult> GetDesiredUser(string emailOrUsername)

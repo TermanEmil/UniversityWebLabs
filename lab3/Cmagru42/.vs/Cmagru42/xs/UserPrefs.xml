@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Account/Settings.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DataLayer/DB/CmagruDBContext.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="181" Column="9" />
-      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="1" Column="1" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="18" Column="35" />
+      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="4" Column="1" />
+      <File FileName="DataLayer/UserSettings.cs" Line="6" Column="43" />
+      <File FileName="DataLayer/DB/CmagruDBContext.cs" Line="19" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

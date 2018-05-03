@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BusinessLayer.Emailing;
 using DataLayer.AppUser;
 using DataLayer.DB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace BusinessLayer
@@ -26,6 +28,19 @@ namespace BusinessLayer
             if (role == null)
                 return null;
             return dBContext.Roles.First(x => x.Id == role.RoleId).Name;
+        }
+
+        public static async Task SendEmailConfirm(
+            IEmailService emailService,
+            string email,
+            string ctokenLink)
+        {
+            await emailService.Send(new EmailMessage
+            {
+                ToAddress = email,
+                Subject = "[Cmagru][no-reply]Email confirmation",
+                Content = "Click the link: " + ctokenLink
+            });
         }
     }
 }
