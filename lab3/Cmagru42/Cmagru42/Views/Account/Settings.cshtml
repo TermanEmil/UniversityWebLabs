@@ -1,4 +1,29 @@
-﻿@{
+﻿@model SettingsViewModel
+
+@{
     ViewData["Title"] = "Settings";
 }
 
+@section Styles {
+    <style>
+        .inline {
+            display: inline;
+        }
+    </style>
+}
+
+<div>
+    <form asp-controller="Account" asp-action="SetSettings" method="post">
+        <div>
+            <p class="inline">Send notifications on email: </p>
+
+            <!-- Rounded switch -->
+            <label class="switch" >
+              <input asp-for="SendNotifsOnEmail">
+              <span class="slider round"></span>
+            </label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+</div>

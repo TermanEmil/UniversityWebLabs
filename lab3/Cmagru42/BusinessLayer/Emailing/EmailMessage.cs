@@ -9,5 +9,6 @@ namespace BusinessLayer.Emailing
         public string ToAddress { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
+        public bool IsHtml { get; set; } = true;
     }
 }

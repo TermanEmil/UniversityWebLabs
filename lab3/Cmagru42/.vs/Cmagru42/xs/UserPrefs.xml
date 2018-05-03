@@ -1,10 +1,14 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="DataLayer/DB/CmagruDBContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BusinessLayer/Emailing/EmailMessage.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="18" Column="35" />
-      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="4" Column="1" />
-      <File FileName="DataLayer/UserSettings.cs" Line="6" Column="43" />
-      <File FileName="DataLayer/DB/CmagruDBContext.cs" Line="19" Column="35" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="190" Column="13" />
+      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="16" Column="34" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="36" Column="81" />
+      <File FileName="BusinessLayer/ImgControl.cs" Line="142" Column="13" />
+      <File FileName="Cmagru42/Controllers/PhotoRoomController.cs" Line="37" Column="84" />
+      <File FileName="BusinessLayer/UserUtils.cs" Line="70" Column="13" />
+      <File FileName="BusinessLayer/Emailing/EmailService.cs" Line="26" Column="57" />
+      <File FileName="BusinessLayer/Emailing/EmailMessage.cs" Line="12" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

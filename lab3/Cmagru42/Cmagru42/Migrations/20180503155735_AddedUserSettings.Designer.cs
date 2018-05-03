@@ -12,9 +12,10 @@ using System;
 namespace Presentation.Migrations
 {
     [DbContext(typeof(CmagruDBContext))]
-    partial class CmagruDBContextModelSnapshot : ModelSnapshot
+    [Migration("20180503155735_AddedUserSettings")]
+    partial class AddedUserSettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer;
+using BusinessLayer.Emailing;
 using DataLayer.AppUser;
 using DataLayer.DB;
 using Microsoft.AspNetCore.Authorization;
@@ -27,12 +28,13 @@ namespace Presentation.Controllers
         public PhotoRoomController(
             ILogger<AccountController> logger,
             CmagruDBContext context,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IEmailService emailService)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
-            _imgCtrl = new ImgControl(_logger, _context, _userManager);
+            _imgCtrl = new ImgControl(_logger, _context, _userManager, emailService);
         }
 
         [Route("Index"), Route("")]

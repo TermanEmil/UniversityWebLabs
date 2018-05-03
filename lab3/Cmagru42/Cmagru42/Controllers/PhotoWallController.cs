@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer;
+using BusinessLayer.Emailing;
 using DataLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
@@ -26,12 +27,13 @@ namespace Presentation.Controllers
         public PhotoWallController(
             ILogger<AccountController> logger,
             CmagruDBContext context,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IEmailService emailService)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
-            _imgCtrl = new ImgControl(logger, context, userManager);
+            _imgCtrl = new ImgControl(logger, context, userManager, emailService);
         }
 
         [Route(""), Route("Index")]

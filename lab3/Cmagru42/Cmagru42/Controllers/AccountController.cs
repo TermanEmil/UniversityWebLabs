@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer;
 using BusinessLayer.Emailing;
+using DataLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
 using Microsoft.AspNetCore.Authentication;
@@ -180,7 +182,46 @@ namespace Presentation.Controllers
         [Route("Settings")]
         public IActionResult Settings()
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var settings = _context.GetUserSettings
+                                   .FirstOrDefault(x => x.UserId == userId);
+
+            var sendNotifs = settings == null ? false : settings.SendEmailNotifs;
+
+            var model = new SettingsViewModel()
+            {
+                SendNotifsOnEmail = sendNotifs
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("SetSettings")]
+        public async Task<IActionResult> SetSettings(SettingsViewModel model)
+        {
+            var userId = _userManager.GetUserId(User);
+            var settings = _context.GetUserSettings
+                                   .FirstOrDefault(x => x.UserId == userId);
+            if (settings != null && settings.SendEmailNotifs == model.SendNotifsOnEmail)
+                return View("Settings", model);
+
+            if (settings == null)
+            {
+                settings = new UserSettings
+                {
+                    UserId = userId,
+                    SendEmailNotifs = model.SendNotifsOnEmail
+                };
+                _context.GetUserSettings.Add(settings);
+            }
+            else
+            {
+                settings.SendEmailNotifs = model.SendNotifsOnEmail;
+                await TryUpdateModelAsync(settings);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Settings");
         }
 
         #region Helpers

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BusinessLayer.Emailing;
 using DataLayer;
 using DataLayer.AppUser;
 using DataLayer.DB;
@@ -17,7 +18,7 @@ namespace BusinessLayer
         private readonly ILogger _logger;
         private readonly CmagruDBContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        private readonly IEmailService _emailService;
         public static readonly IList<string> imageExtensions = new List<string>
         {
             ".JPG", ".JPE", ".BMP", ".PNG", ".JPEG"
@@ -27,11 +28,13 @@ namespace BusinessLayer
         public ImgControl(
             ILogger logger,
             CmagruDBContext context,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IEmailService emailService)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
+            _emailService = emailService;
         }
 
         public async Task UploadImgFromRawStrAsync(
@@ -114,7 +117,10 @@ namespace BusinessLayer
             return likesCount;
         }
 
-        public async Task PostComment(ApplicationUser user, string imgId, string content)
+        public async Task PostComment(
+            ApplicationUser user,
+            string imgId,
+            string content)
         {
             var comment = new Comment()
             {
@@ -127,6 +133,28 @@ namespace BusinessLayer
 
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
+
+            var img = _context.ImgUploads.Find(imgId);
+            if (img == null)
+                return;
+            if (img.UserId == user.Id)
+                return;
+
+            var subject = "[Cmagru][Commented][no-reply] " + user.UserName + " commented";
+            var body = "<b>" + user.UserName + "</b> ";
+            body += "has just submited a comment: <br />";
+            body += "<i>" + content + "</i>";
+
+            if (user.EmailConfirmed)
+                body += "<br /> Send him a reply: " + user.Email;
+
+            UserUtils.SendEmailNotif(
+                _context,
+                _emailService,
+                img.UserId,
+                subject,
+                body
+            );
         }
 
         public async Task RemoveImg(ApplicationUser user, string imgId)

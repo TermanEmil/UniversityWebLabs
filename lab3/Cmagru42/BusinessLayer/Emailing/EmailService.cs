@@ -34,12 +34,14 @@ namespace BusinessLayer.Emailing
                     _emailConfiguration.SmtpUsername,
                     _emailConfiguration.SmtpPassword)
             };
-
-            smtpClient.Send(
+            var mailMsg = new MailMessage(
                 _emailConfiguration.SmtpUsername,
                 emailMessage.ToAddress,
                 emailMessage.Subject,
-                emailMessage.Content);
+                emailMessage.Content
+            );
+            mailMsg.IsBodyHtml = emailMessage.IsHtml;
+            smtpClient.SendAsync(mailMsg, mailMsg);
 
             await Task.FromResult(0);
         }

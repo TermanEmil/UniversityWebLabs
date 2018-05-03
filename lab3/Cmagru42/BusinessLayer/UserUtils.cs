@@ -38,8 +38,40 @@ namespace BusinessLayer
             await emailService.Send(new EmailMessage
             {
                 ToAddress = email,
-                Subject = "[Cmagru][no-reply]Email confirmation",
-                Content = "Click the link: " + ctokenLink
+                Subject = "[Cmagru][no-reply] Email confirmation",
+                Content = "Click this <a href='" + ctokenLink + "'>link</a> to confirm the email."
+            });
+        }
+
+        /// <summary>
+        /// Send email notification to target, if email is
+        /// confirmed and target allows notifications.
+        /// </summary>
+        public static void SendEmailNotif(
+            CmagruDBContext context,
+            IEmailService emailService,
+            string targetUserId,
+            string subject,
+            string content)
+        {
+            var targetUser = context.Users.Find(targetUserId);
+            if (targetUser == null)
+                return;
+            if (!targetUser.EmailConfirmed)
+                return;
+
+            var settings = context.GetUserSettings
+                                  .FirstOrDefault(x => x.UserId == targetUser.Id);
+            if (settings == null)
+                return;
+            if (!settings.SendEmailNotifs)
+                return;
+
+            emailService.Send(new EmailMessage
+            {
+                ToAddress = targetUser.Email,
+                Subject = subject,
+                Content = content
             });
         }
     }
