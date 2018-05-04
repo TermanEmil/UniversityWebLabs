@@ -43,6 +43,19 @@ namespace BusinessLayer
             });
         }
 
+        public static async Task SendPasswordRecovery(
+            IEmailService emailService,
+            string email,
+            string ctokenLink)
+        {
+            await emailService.Send(new EmailMessage
+            {
+                ToAddress = email,
+                Subject = "[Cmagru][no-reply] Password recovery",
+                Content = "Click this <a href='" + ctokenLink + "'>link</a> to recover your password."
+            });
+        }
+
         /// <summary>
         /// Send email notification to target, if email is
         /// confirmed and target allows notifications.

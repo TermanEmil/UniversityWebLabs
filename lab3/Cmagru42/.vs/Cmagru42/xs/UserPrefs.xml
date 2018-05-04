@@ -1,22 +1,28 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Shared/_LoginPartial.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Account/PasswordRecovery.cshtml">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="222" Column="69" />
-      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="25" Column="21" />
-      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="79" Column="55" />
-      <File FileName="BusinessLayer/ImgControl.cs" Line="180" Column="85" />
-      <File FileName="Cmagru42/Controllers/PhotoRoomController.cs" Line="37" Column="84" />
-      <File FileName="BusinessLayer/UserUtils.cs" Line="43" Column="16" />
-      <File FileName="BusinessLayer/Emailing/EmailService.cs" Line="43" Column="54" />
-      <File FileName="BusinessLayer/Emailing/EmailMessage.cs" Line="12" Column="49" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="341" Column="28" />
+      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="56" Column="1" />
+      <File FileName="Cmagru42/Models/AccountViewModels/ChangePasswordViewModel.cs" Line="19" Column="38" />
+      <File FileName="Cmagru42/Models/AccountViewModels/RegisterViewModel.cs" Line="27" Column="9" />
       <File FileName="Cmagru42/Models/AccountViewModels/SettingsViewModel.cs" Line="20" Column="48" />
-      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="19" Column="47" />
-      <File FileName="Cmagru42/Views/Shared/_LoginPartial.cshtml" Line="12" Column="87" />
+      <File FileName="Cmagru42/Views/Account/ChangePassword.cshtml" Line="16" Column="30" />
+      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="33" Column="13" />
+      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="36" Column="51" />
+      <File FileName="Cmagru42/Views/Shared/_LoginPartial.cshtml" Line="12" Column="55" />
+      <File FileName="Cmagru42/Views/Shared/_NavBarPartial.cshtml" Line="1" Column="1" />
+      <File FileName="Cmagru42/Models/AccountViewModels/ForgotPasswordViewModel.cs" Line="11" Column="25" />
+      <File FileName="Cmagru42/Views/Account/ForgotPassword.cshtml" Line="18" Column="6" />
+      <File FileName="Cmagru42/Views/Account/LogIn.cshtml" Line="14" Column="83" />
+      <File FileName="Cmagru42/Views/Account/PasswordRecovery.cshtml" Line="12" Column="83" />
+      <File FileName="Cmagru42/Models/AccountViewModels/PasswordRecoveryViewModel.cs" Line="21" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/Cmagru42/Controllers/AccountController.cs" relfile="Cmagru42/Controllers/AccountController.cs" line="341" column="28" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

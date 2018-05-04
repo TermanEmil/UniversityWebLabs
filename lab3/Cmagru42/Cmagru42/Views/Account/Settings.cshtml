@@ -46,7 +46,11 @@
             @ViewBag.Status
         </p>
     </form>
-    
+
+    <hr />
+
+    @await Html.PartialAsync("ChangePassword", new ChangePasswordViewModel())
+
 </div>
 
 @section Scripts {

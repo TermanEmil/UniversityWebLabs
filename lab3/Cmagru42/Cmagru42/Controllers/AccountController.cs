@@ -173,7 +173,7 @@ namespace Presentation.Controllers
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
-            {
+            { 
                 throw new ApplicationException($"Unable to load user with ID '{userId}'.");
             }
 
@@ -187,19 +187,17 @@ namespace Presentation.Controllers
                     await TryUpdateModelAsync(user);
                     await _context.SaveChangesAsync();
                     await _userManager.UpdateAsync(user);
+                    return View("EmailConfirmed");
                 }
-                return View("EmailConfirmed");
             }
-            else
-                return View("Error");
+
+            return View("Error");
         }
 
         [Route("Settings")]
         public IActionResult Settings()
         {
-            SettingsViewModel model = new SettingsViewModel();
-            LoadSettinsViewModelData(model);
-            return View(model);
+            return View(LoadSettinsViewModelData(new SettingsViewModel()));
         }
 
         [HttpPost]
@@ -221,6 +219,142 @@ namespace Presentation.Controllers
             }
             LoadSettinsViewModelData(model);
             return View("Settings", model);
+        }
+
+        [Route("ChangePassword")]
+        public IActionResult ChangePassword()
+        {
+            return View("Settings", LoadSettinsViewModelData(new SettingsViewModel()));
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (model.NewPassword != model.ConfirmPassword)
+                    ModelState.AddModelError("", "Passwords don't match");
+                else
+                {
+                    var result = await _userManager.ChangePasswordAsync(
+                        user,
+                        model.CurrentPassword,
+                        model.NewPassword);
+                    
+                    if (result.Succeeded)
+                    {
+                        ViewBag.PasswordChanged = "Password successfully changed";
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                            ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View("Settings", LoadSettinsViewModelData(new SettingsViewModel()));
+        }
+
+        [Route("ForgotPassword")]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("ForgotPassword")]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Such email is not registered.");
+                return View();
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var callbackUrl = Url.Action("PasswordRecovery", "Account", new
+            {
+                userid = user.Id,
+                code = token
+            }, protocol: HttpContext.Request.Scheme);
+
+            try
+            {
+                await UserUtils.SendPasswordRecovery(
+                    _emailService,
+                    user.Email,
+                    callbackUrl);
+            }
+            catch (Exception e)
+            {
+                ViewBag.RegistrationStatus = e.Message;
+            }
+            finally
+            {
+                ViewBag.RegistrationStatus = "Recovery link sent";
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("PasswordRecovery")]
+        public async Task<IActionResult> PasswordRecovery(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                _logger.LogInformation("Not found: userid = " + userId + "; code = " + code);
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+            }
+
+            TempData["PasswordRecoveryToken"] = code;
+            TempData["PasswordRecoveryUserId"] = userId;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Route("PasswordRecovery")]
+        public async Task<IActionResult> PasswordRecovery(PasswordRecoveryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!TempData.ContainsKey("PasswordRecoveryToken") ||
+                    !TempData.ContainsKey("PasswordRecoveryUserId"))
+                {
+                    ModelState.AddModelError("", "Internal TempData was deleted. Try again please.");
+                    return View(model);
+                }
+                var user = await _userManager.FindByIdAsync(TempData["PasswordRecoveryUserId"] as string);
+                var token = TempData["PasswordRecoveryToken"] as string;
+
+                var rs = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+
+                if (rs.Succeeded)
+                    return RedirectToAction("Login");
+                else
+                    foreach (var error in rs.Errors)
+                        ModelState.AddModelError("", error.Description);
+            }
+
+            return View(model);
         }
 
         #region Helpers
@@ -302,12 +436,12 @@ namespace Presentation.Controllers
                 ModelState.AddModelError("", "An user with the same UserName already exists.");
                 return 0;
             }
-
-            currentUser.UserName = model.NewUserName;
-            await TryUpdateModelAsync(currentUser);
-            var rs = await _userManager.UpdateAsync(currentUser);
+            var rs = await _userManager.SetUserNameAsync(currentUser, model.NewUserName);
             if (rs.Succeeded)
+            {
+                await _userManager.UpdateAsync(currentUser);
                 return 1;
+            }
             else
             {
                 foreach (var error in rs.Errors)
@@ -358,7 +492,7 @@ namespace Presentation.Controllers
             return 0;
         }
 
-        private void LoadSettinsViewModelData(SettingsViewModel model)
+        private SettingsViewModel LoadSettinsViewModelData(SettingsViewModel model)
         {
             var userId = _userManager.GetUserId(User);
             var user = _context.Users.Find(userId);
@@ -370,6 +504,7 @@ namespace Presentation.Controllers
             model.SendNotifsOnEmail = sendNotifs;
             model.CurrentEmail = user.Email;
             model.CurrentUserName = user.UserName;
+            return model;
         }
         #endregion
     }
