@@ -1,0 +1,57 @@
+\ProvidesPackage{myTitlePage}
+
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+\RequirePackage[warn]{textcomp}
+\RequirePackage{txfonts}
+\RequirePackage{lib/myUtils}
+
+% #1 = Title
+% #2 = Name
+% #3 = (op) Prof
+% #4 = (op) Subject
+% #5 = (op) Report nb
+% #6 = (op) year
+
+\DeclareDocumentCommand{\myTitlePage}{m m o o o O{2018}}
+{
+	\begin{center}
+		Technical University of Moldova\\
+		Inginerical department S.A.
+
+		\vfill {\fontsize{100}{1}\selectfont Report}\\
+
+		% Report number
+		\IfNoValueOrEmptyTF{#5}
+		{}
+		{
+			{\huge \textbf{\textnumero}: #5}
+		}
+		\bigskip
+
+		% Title
+		{\huge #1}\\
+
+		% Subject
+		\IfNoValueOrEmptyTF{#4}
+		{}
+		{
+			{\huge \textbf{Subject:} #4}
+		}
+		\vfill
+
+	\end{center}
+	Author: \hfill Terman Emil FAF161\\
+	% Prof
+	\IfNoValueOrEmptyTF{#3}
+	{}
+	{
+		Prof: \hfill #3
+	}
+	\vfill
+
+	\begin{center}
+		Chisinau #6
+	\end{center}
+	\pagebreak
+}

@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage{indentfirst} 
+\usepackage{silence}
+\WarningFilter{latex}{You have requested package}
+
+\usepackage{lib/defaultReportSettings}
+\usepackage{lib/myTitlePage}
+\usepackage{lib/customHyperRef}
+\usepackage{lib/myIncludeImg}
+
+\makeatletter
+% we use \prefix@<level> only if it is defined
+\renewcommand{\@seccntformat}[1]{%
+  \ifcsname prefix@#1\endcsname
+    \csname prefix@#1\endcsname
+  \else
+    \csname the#1\endcsname\quad
+  \fi}
+% define \prefix@section
+\newcommand\prefix@section{}
+\newcommand\prefix@subsection{}
+\makeatother
+
+
+\begin{document}
+	\myTitlePage{Teh Web}{Terman Emil FAF161}[Plugaru T.][][3 - 4]
+
+	\section{Cmagru - project}
+		I have implemented a web page in ASP.NET Core 2.0 MVC. It's supposed to be an Instagram like applications, where people can upload, like and comment images, and generally - have fun.
+
+		\subsection{Main features}
+			\begin{enumerate}
+				\item upload a local image (with a max size);
+				\item make a live image from the webcam. In this case, the user can add a sticker to the new photo. The stickers are choosed from all users with \textit{ImgOverlayer} role;
+				\item like \& unlike;
+				\item comment;
+				\item remove owned imgs. Only the admin has free access to all photos;
+				\item email confirmation;
+				\item configurable email notifications when:
+					\begin{itemize}
+						\item sommeone posts a comment on a owned img;
+						\item the admin removes one of your imgs;
+					\end{itemize}
+				\item edit email (with confirmation);
+				\item edit UserName \& Password;
+				\item \textit{Forgot password} option;
+			\end{enumerate}
+
+		\subsection{Goals}
+			\begin{itemize}
+				\item understanding the basics of MVC. Model View Controller is a design pattern to improve the modularity, thus - maintainability;
+				\item ORM (object relational mapping). For this project I have used \textit{Entity Framework} which made my experience with Databases, a lot easier. In contrast, manually writing SQL sequences is much less maintainable and it can create very obscure errors;
+
+				\item CRUD (Create Remove Update Delete) database models.
+				
+				\item Multilayered architecture:
+					\begin{itemize}
+						\item Business Layer (the logic);
+						\item Data Layer (database models);
+						\item Presentation Layer (MVC);
+					\end{itemize}
+					To follow this pattern, I started with an MVC project, which became my \textit{Presentation}. Then I added \textit{Business} and \textit{Data} layers, as 2 separate projects. (I'm not entirely sure if this is how it's done). This is a very useful pattern to add even more modularity.
+
+				\item Authentication: I used \textit{Identity Framework} which spared me the trouble to create User data and roles. It also, automates the password hashing and Controller authorization. It provides \textit{System.Security.Claims.ClaimsPrincipal}, a field, which stores data about the currently authenticated user. For example, all users can view all the images, but only authenticated users can Like, Comment or add new Images. If a user is not logged in and tries to access such an action, he is redirected to Registration View.
+
+				\item Roles. There are 3 roles: \textit{Admin, ImgOverlayer} and \textit{Member}. For the first 2 roles, a default user is created if there isn't one yet. The Admin has controll over all images. The only special ability of ImgOverlayer, is that he can add superposable images. All his uploads won't be shown on the PhotoWall (unless it's the admin or ImgOverlayer).
+			\end{itemize}
+
+		\subsection{Project preview}
+			
+			\myIncludeImg{./imgs/cmagru-screenshot-0.png}[0.4][PhotoWall]
+			\myIncludeImg{./imgs/cmagru-screenshot-1.png}[0.4][PhotoRoom]
+			\myIncludeImg{./imgs/cmagru-screenshot-2.png}[0.3][Registration]
+			\myIncludeImg{./imgs/cmagru-screenshot-3.png}[0.7][Email Confirmation link]
+			\myIncludeImg{./imgs/cmagru-screenshot-4.png}[0.7][Email confirmed]
+			\myIncludeImg{./imgs/cmagru-screenshot-5.png}[0.6][Login]
+			\myIncludeImg{./imgs/cmagru-screenshot-6.png}[0.5][PhotoWall - comment section]
+			\myIncludeImg{./imgs/cmagru-screenshot-7.png}[0.7][Admin removed your image - email notification]
+			\myIncludeImg{./imgs/cmagru-screenshot-8.png}[0.5][User Settings]
+			\myIncludeImg{./imgs/cmagru-screenshot-9.png}[0.3][ImgOverlayer and Admin can see the superposable images]
+
+	\section{Conclusion}
+		This project was a very good introduction to Web Applications. I \textbf{am} aware that I have many bugs and better ways to do things. For example, I am saving the images on the database, which is a huge overhead. So, the best way to do it, is to save them on the server and put only the img address in DB. I wasn't aware of this at the beginning, but as I progressed, I learned more about some common good practices.
+
+		From this project, I concluded that Multilayered Architecture and MVC are pretty good to modulate a Web application. For example, I tried to help some colleges with their own lab and it was much easier for to understand where was the problem, since they were using MVC. But, because one of them didn't separate their Database from the rest of the logic, some of them ended up using Database Models as MVC models.
+
+		From my little experience with SQL, I was very delighted to learn that there is something like ORM. Combined with \textit{Linq}, it becomes a pleasure to work with the database. While using \textit{Entity Framework}, I realized how flexible it is, compared to SQL sequences. 
+\end{document}

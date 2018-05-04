@@ -1,0 +1,28 @@
+\ProvidesPackage{customHyperRef}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{xparse}
+\usepackage{color}
+
+% label ref
+% reflink text
+
+\DeclareDocumentCommand{\labelRef}{m O{#1}}
+{
+	\begin{center}
+		\newcommand{\refText}{#2}
+
+		\let \OldRefTexA \refText
+		\renewcommand{\refText}{\underline{\textit{\OldRefTexA}}}
+
+		\let \OldRefTexB \refText
+		\renewcommand{\refText}{{\small \color{blue} \OldRefTexB}}
+
+		\hyperref[#1]{\refText}
+	\end{center}
+}
+
+\DeclareDocumentCommand{\myHref}{m O{#1}}
+{
+	\href{#1}{{\color{blue} \textit{\underline{#2}}}}
+}

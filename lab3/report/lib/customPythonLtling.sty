@@ -1,0 +1,53 @@
+\ProvidesPackage{customPythonLtling}
+
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage{caption}
+\RequirePackage{xparse}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{veryLightGray}{rgb}{0.95,0.95,0.95}
+
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{7}
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{7}
+
+\lstdefinestyle{MyPyStyle}{
+	language=Python,
+	basicstyle=\scriptsize,
+	otherkeywords={self},
+	keywordstyle=\ttb\color{deepblue},
+	emph={MyClass,__init__},
+	emphstyle=\ttb\color{deepred},
+	stringstyle=\color{deepgreen},
+	frame=tb,
+	showstringspaces=false,
+	backgroundcolor=\color{veryLightGray},
+	tabsize=4,
+}
+
+\def \pyCount {1}
+
+\newcounter{pythonCount}
+\renewcommand{\pyCount}{\arabic{pythonCount}}
+\DeclareCaptionLabelFormat{pyCaption}{\textbf{Pyhon Code \pyCount}}
+
+\lstnewenvironment{pythonCode}[1][]
+{
+	\refstepcounter{pythonCount}
+	\captionsetup{labelformat=pyCaption,labelsep=colon}
+	\lstset{language=Python, style=MyPyStyle, #1}
+}{}
+
+% #1 file path
+% #2 caption
+% #3 label (no need to bother with this)
+
+\DeclareDocumentCommand{\includePyFile}{m O{} O{pythCode\pyCount} O{}}
+{
+	\refstepcounter{pythonCount}
+	\captionsetup{labelformat=pyCaption,labelsep=colon}
+	\lstset{language=Python, style=MyPyStyle, caption={#2}, label={#3}, #4}
+	\lstinputlisting{#1}
+}

@@ -1,0 +1,24 @@
+\ProvidesPackage{myFigure}
+
+\RequirePackage{xcolor}
+\RequirePackage{xparse}
+\RequirePackage{mdframed}
+
+% #1 bg color
+
+% Figure with a little background
+\NewDocumentEnvironment{myFigure}{O{black!5}}
+{
+	\begin{center}
+		\begin{figure}[!ht]
+			\begin{mdframed}[backgroundcolor=#1,
+							 rightline=false,
+							 leftline=false]
+					\begin{center}
+}
+{
+				\end{center}
+			\end{mdframed}
+		\end{figure}
+	\end{center}
+}

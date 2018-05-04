@@ -1,0 +1,58 @@
+\ProvidesPackage{customPseudoLstling}
+
+\RequirePackage[usenames,dvipsnames]{xcolor}
+\RequirePackage{listings}
+\RequirePackage{caption}
+\RequirePackage{xparse}
+
+\definecolor{veryLightGray}{rgb}{0.95,0.95,0.95}
+
+% Define Language
+\lstdefinelanguage{algorithm}
+{
+	morekeywords={
+		input,output,return,datatype,function,in,if,else,foreach,while,begin,end,then,to,do,for,div,mod,array,int,of,declare,and,or,},
+	sensitive=false,
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]"
+}
+
+\lstdefinestyle{MyPseudoStyle}{
+	language=algorithm,
+	mathescape=true,
+	frame=tB,
+	backgroundcolor = \color{white},
+	numbers=left,
+	numberstyle=\tiny,
+	basicstyle=\scriptsize,
+	keywordstyle=\color{blue}\bfseries\em,
+	numbers=left,
+	xleftmargin=.04\textwidth,
+	tabsize=4,
+	backgroundcolor=\color{veryLightGray}
+}
+
+\newcounter{nalg}
+\renewcommand{\thenalg}{\arabic{nalg}}
+\DeclareCaptionLabelFormat{algocaption}{\textbf{Algorithm \thenalg}}
+
+\lstnewenvironment{algorithm}[1][]
+{
+	\refstepcounter{nalg}
+	\captionsetup{labelformat=algocaption,labelsep=colon}
+	\lstset{language=algorithm, style=MyPseudoStyle, #1}
+}{}
+
+
+% #1 file path
+% #2 caption
+% #3 label (no need to bother with this)
+
+\DeclareDocumentCommand{\includeAlgFile}{m O{} O{alg\thenalg} O{}}
+{
+	\refstepcounter{nalg}
+	\captionsetup{labelformat=algocaption,labelsep=colon}
+	\lstset{language=algorithm, caption={#2}, label={#3}, style=MyPseudoStyle, #4}
+	\lstinputlisting{#1}
+}
