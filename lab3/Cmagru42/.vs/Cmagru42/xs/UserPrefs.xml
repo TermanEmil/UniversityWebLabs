@@ -1,28 +1,19 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Views/Account/PasswordRecovery.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BusinessLayer/InitRoles.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="341" Column="28" />
-      <File FileName="Cmagru42/Views/Account/Settings.cshtml" Line="56" Column="1" />
-      <File FileName="Cmagru42/Models/AccountViewModels/ChangePasswordViewModel.cs" Line="19" Column="38" />
-      <File FileName="Cmagru42/Models/AccountViewModels/RegisterViewModel.cs" Line="27" Column="9" />
-      <File FileName="Cmagru42/Models/AccountViewModels/SettingsViewModel.cs" Line="20" Column="48" />
-      <File FileName="Cmagru42/Views/Account/ChangePassword.cshtml" Line="16" Column="30" />
-      <File FileName="Cmagru42/Views/Account/Register.cshtml" Line="33" Column="13" />
-      <File FileName="Cmagru42/Views/Shared/_Layout.cshtml" Line="36" Column="51" />
-      <File FileName="Cmagru42/Views/Shared/_LoginPartial.cshtml" Line="12" Column="55" />
-      <File FileName="Cmagru42/Views/Shared/_NavBarPartial.cshtml" Line="1" Column="1" />
-      <File FileName="Cmagru42/Models/AccountViewModels/ForgotPasswordViewModel.cs" Line="11" Column="25" />
-      <File FileName="Cmagru42/Views/Account/ForgotPassword.cshtml" Line="18" Column="6" />
-      <File FileName="Cmagru42/Views/Account/LogIn.cshtml" Line="14" Column="83" />
-      <File FileName="Cmagru42/Views/Account/PasswordRecovery.cshtml" Line="12" Column="83" />
-      <File FileName="Cmagru42/Models/AccountViewModels/PasswordRecoveryViewModel.cs" Line="21" Column="9" />
+      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="473" Column="35" />
+      <File FileName="Cmagru42/Models/PhotoWallViewModels/GetImgOwnerPermissionsViewModel.cs" Line="1" Column="1" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="165" Column="13" />
+      <File FileName="Cmagru42/Views/PhotoWall/_DetailedImgDispPartial.cshtml" Line="1" Column="1" />
+      <File FileName="Cmagru42/wwwroot/js/DetailedImgViewer.js" Line="40" Column="40" />
+      <File FileName="Cmagru42/Startup.cs" Line="1" Column="1" />
+      <File FileName="BusinessLayer/UserUtils.cs" Line="1" Column="1" />
+      <File FileName="BusinessLayer/InitRoles.cs" Line="34" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/Cmagru42/Controllers/AccountController.cs" relfile="Cmagru42/Controllers/AccountController.cs" line="341" column="28" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
