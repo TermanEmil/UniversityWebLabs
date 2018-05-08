@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Presentation.Authorization;
 using Presentation.Models;
 using Presentation.Models.PhotoWallViewModels;
 
@@ -22,17 +23,20 @@ namespace Presentation.Controllers
         private readonly ILogger _logger;
         private readonly CmagruDBContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ImgControl _imgCtrl;
+		private readonly IAuthorizationService _authorizationService;
+		private readonly ImgControl _imgCtrl;
 
         public PhotoWallController(
             ILogger<AccountController> logger,
             CmagruDBContext context,
             UserManager<ApplicationUser> userManager,
-            IEmailService emailService)
+            IEmailService emailService,
+			IAuthorizationService authorizationService)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
+			_authorizationService = authorizationService;
             _imgCtrl = new ImgControl(logger, context, userManager, emailService);
         }
 
@@ -149,10 +153,8 @@ namespace Presentation.Controllers
                     success = true,
                     permissions = _permissions
                 });
-
-            var user = await _userManager.GetUserAsync(User);
-            var img = _context.ImgUploads.FirstOrDefault(x => x.Id == imgId);
-
+   
+            var img = _context.ImgUploads.FirstOrDefault(x => x.Id == imgId);         
             if (img == null)
                 return Json(new
                 {
@@ -160,8 +162,13 @@ namespace Presentation.Controllers
                     error = "No such img"
                 });
 
-            if (img.UserId == user.Id || UserUtils.GetUserRole(_context, user) == "Admin")
-                _permissions.Add("Write");
+			var deletePermission = await _authorizationService.AuthorizeAsync(
+				User,
+				img,
+				ImgUploadOperations.Delete);
+            
+			if (deletePermission.Succeeded)
+				_permissions.Add(Constants.DeleteOperationName);
 
             return Json(new
             {
@@ -176,11 +183,29 @@ namespace Presentation.Controllers
         [Route("RemoveImg/{imgId}")]
         public async Task<JsonResult> RemoveImg([FromRoute] string imgId)
         {
-            var user = await _userManager.GetUserAsync(User);
+			var img = _context.ImgUploads.Find(imgId);
+			if (img == null)
+				return Json(new
+                {
+                    success = false,
+                    error = "No such img"
+                });
 
+			var deletePermission = await _authorizationService.AuthorizeAsync(
+				user: User,
+				resource: img,
+				requirement: ImgUploadOperations.Delete);
+
+			if (!deletePermission.Succeeded)
+				return Json(new
+                {
+                    success = false,
+                    error = "Action not permited"
+                });
+            
             try
             {
-                await _imgCtrl.RemoveImg(user, imgId);
+				await _imgCtrl.RemoveImg(User, img);
             }
             catch (Exception e)
             {

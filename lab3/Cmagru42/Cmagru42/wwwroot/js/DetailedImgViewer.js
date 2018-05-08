@@ -36,7 +36,7 @@ function loadImgOwnerData(imgId) {
 
         success: function(result) {
             if (result.success) {
-                if (result.permissions.indexOf("Write") >= 0)
+                if (result.permissions.indexOf("Delete") >= 0)
                     removeImgBtn.hidden = false;
                 if (result.owner != null)
                     imgOwnerUsernameField.innerHTML = result.owner;

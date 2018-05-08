@@ -12984,23 +12984,23 @@
     ]
   },
   "packageFolders": {
-    "/Users/unicornslayer/.nuget/packages/": {},
+    "/Users/user00/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/BusinessLayer.csproj",
+      "projectUniqueName": "/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/BusinessLayer.csproj",
       "projectName": "BusinessLayer",
-      "projectPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/BusinessLayer.csproj",
-      "packagesPath": "/Users/unicornslayer/.nuget/packages/",
-      "outputPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj",
+      "projectPath": "/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/BusinessLayer.csproj",
+      "packagesPath": "/Users/user00/.nuget/packages/",
+      "outputPath": "/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/BusinessLayer/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/unicornslayer/.config/NuGet/NuGet.Config"
+        "/Users/user00/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -13011,8 +13011,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/DataLayer.csproj": {
-              "projectPath": "/Users/unicornslayer/Documents/university/UniversityWebLabs/lab3/Cmagru42/DataLayer/DataLayer.csproj"
+            "/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/DataLayer/DataLayer.csproj": {
+              "projectPath": "/Users/user00/Documents/UniversityWebLabs/lab3/Cmagru42/DataLayer/DataLayer.csproj"
             }
           }
         }

@@ -157,21 +157,14 @@ namespace BusinessLayer
             );
         }
 
-        public async Task RemoveImg(ApplicationUser user, string imgId)
-        {
-            var img = _context.ImgUploads.FirstOrDefault(x => x.Id == imgId);
-            if (img == null)
-                throw new Exception("No such img");
-
-            var role = UserUtils.GetUserRole(_context, user);
-            if (img.UserId != user.Id && role != "Admin")
-                throw new Exception("Action not permited");
-
+		public async Task RemoveImg(ClaimsPrincipal claimsPrincipal, ImgUpload img)
+        {         
             RemoveImg(img);
             await _context.SaveChangesAsync();
 
-            if (role == "Admin")
+			if (claimsPrincipal.IsInRole("Admin"))
             {
+				var user = await _userManager.GetUserAsync(claimsPrincipal);
                 if (img.UserId == user.Id)
                     return;
                 var subject = "[Cmagru][ImgRemoved][no-reply] Img removed by admin";

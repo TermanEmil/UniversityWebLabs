@@ -1,14 +1,9 @@
 ﻿<Properties StartupConfiguration="{85884340-90B6-40B7-B4D6-7778FE7F66F5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="BusinessLayer/InitRoles.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cmagru42/Controllers/PhotoWallController.cs">
     <Files>
-      <File FileName="Cmagru42/Controllers/AccountController.cs" Line="473" Column="35" />
-      <File FileName="Cmagru42/Models/PhotoWallViewModels/GetImgOwnerPermissionsViewModel.cs" Line="1" Column="1" />
-      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="165" Column="13" />
-      <File FileName="Cmagru42/Views/PhotoWall/_DetailedImgDispPartial.cshtml" Line="1" Column="1" />
-      <File FileName="Cmagru42/wwwroot/js/DetailedImgViewer.js" Line="40" Column="40" />
       <File FileName="Cmagru42/Startup.cs" Line="1" Column="1" />
-      <File FileName="BusinessLayer/UserUtils.cs" Line="1" Column="1" />
-      <File FileName="BusinessLayer/InitRoles.cs" Line="34" Column="13" />
+      <File FileName="Cmagru42/Controllers/PhotoWallController.cs" Line="208" Column="34" />
+      <File FileName="BusinessLayer/ImgControl.cs" Line="168" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -6,6 +6,7 @@ using BusinessLayer;
 using BusinessLayer.Emailing;
 using DataLayer.AppUser;
 using DataLayer.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Presentation.Authorization;
 using Presentation.Services;
 
 namespace Presentation
@@ -70,6 +72,19 @@ namespace Presentation
                 serviceProvider.GetRequiredService<UserManager<ApplicationUser>>(),
                 Configuration);
             roleInitializer.InitAppRolesAsync().Wait();
+
+			services.AddScoped<
+		        IAuthorizationHandler,
+		        ImgIsOwnerAuthorizationHandler>();
+
+			services.AddScoped<
+				IAuthorizationHandler,
+			    ImgUploadAdministratorsAuthorizationHandler>();
+
+			services.AddScoped<
+				IAuthorizationHandler,
+			    ImgOverlayUploadAuthorizationHandler>();
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
